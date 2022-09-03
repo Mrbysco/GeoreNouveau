@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "georenouveau:items/amethyst_golem_charm"
+  }
+}

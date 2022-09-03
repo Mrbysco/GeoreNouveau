@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "compatibilityLevel": "JAVA_17",
+  "package": "com.shynieke.georenouveau.mixin",
+  "refmap": "georenouveau.refmap.json",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+	"ConvertBuddingGoalAccessor",
+	"PickupAmethystGoalAccessor",
+	"RitualAwakeningMixin"
+  ],
+  "injectors": {
+	"defaultRequire": 1
+  }
+}

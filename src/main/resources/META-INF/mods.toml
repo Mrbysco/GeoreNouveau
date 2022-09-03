@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+issueTrackerURL="https://github.com/Mrbysco/GeoreNouveau/issues"
+license="GNU LGPL v3"
+
+[[mods]]
+modId="georenouveau"
+version="${file.jarVersion}"
+displayName="GeOre Nouveau"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/geore-nouveau"
+authors="Mrbysco, ShyNieke"
+description='''
+Small addon mod for GeOre and Ars Nouveau
+'''
+[[dependencies.georenouveau]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.19.2,1.20)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.georenouveau]]
+modId="forge"
+mandatory=true
+versionRange="[43.1.1,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.georenouveau]]
+modId="geore"
+mandatory=true
+versionRange="[2.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.georenouveau]]
+modId="ars_nouveau"
+mandatory=true
+versionRange="[3.2.10,)"
+ordering="NONE"
+side="BOTH"
