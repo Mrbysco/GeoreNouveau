@@ -118,6 +118,9 @@ repositories {
     }
     maven {
         url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup "software.bernie.geckolib"
+        }
     }
     maven {
         url = "https://maven.theillusivec4.top/"
