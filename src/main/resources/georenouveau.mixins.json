@@ -6,11 +6,7 @@
   "refmap": "georenouveau.refmap.json",
   "target": "@env(DEFAULT)",
   "mixins": [
-	"ConvertBuddingGoalAccessor",
-	"PickupAmethystGoalAccessor",
+	"AbstractRitualAccessor",
 	"RitualAwakeningMixin"
-  ],
-  "injectors": {
-	"defaultRequire": 1
-  }
+  ]
 }

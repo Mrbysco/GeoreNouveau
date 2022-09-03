@@ -1,6 +1,5 @@
 package com.shynieke.georenouveau.client.renderer;
 
-import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shynieke.georenouveau.client.model.GeOreGolemModel;
@@ -24,7 +23,7 @@ public class GeOreGolemRenderer extends GeoEntityRenderer<GeOreGolem> {
 		super(renderManager, new GeOreGolemModel());
 	}
 
-	AmethystGolem golem;
+	GeOreGolem golem;
 	MultiBufferSource buffer;
 	ResourceLocation text;
 

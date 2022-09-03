@@ -20,15 +20,16 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(RitualAwakening.class)
 public class RitualAwakeningMixin {
 
-	@Shadow
+	@Shadow(remap = false)
 	private BlockPos foundPos;
 
-	@Shadow
+	@Shadow(remap = false)
 	private EntityType<? extends LivingEntity> entity;
 	private LinkedGeOre linkedGeOre;
 
-	@Inject(method = "findTargets(Lnet/minecraft/world/level/Level;)V",
-			at = @At(value = "TAIL"), cancellable = true)
+	@Inject(method = "Lcom/hollingsworth/arsnouveau/common/ritual/RitualAwakening;findTargets(Lnet/minecraft/world/level/Level;)V",
+			locals = LocalCapture.NO_CAPTURE, at = @At(
+			value = "TAIL"), remap = false)
 	private void georenouveau_findTargets(Level world, CallbackInfo ci) {
 		RitualAwakening ritual = (RitualAwakening) (Object) this;
 
@@ -40,22 +41,31 @@ public class RitualAwakeningMixin {
 					entity = CompatRegistry.GEORE_GOLEM.get();
 					foundPos = p;
 					linkedGeOre = linked;
-					ci.cancel();
+					break;
 				}
 			}
 		}
 	}
 
-	@Inject(method = "tick()V",
-			locals = LocalCapture.CAPTURE_FAILEXCEPTION, at = @At(
-			value = "INVOKE",
-			target = "Lnet/minecraft/world/entity/LivingEntity;setPos(DDD)V",
-			shift = Shift.AFTER,
-			ordinal = 0
-	))
-	private void georenouveau_tick(CallbackInfo ci, Level world, LivingEntity walker) {
-		if (walker instanceof GeOreGolem geOreGolem) {
-			geOreGolem.setLinkedGeOre(linkedGeOre);
+	@Inject(method = "Lcom/hollingsworth/arsnouveau/common/ritual/RitualAwakening;tick()V",
+			at = @At(
+					value = "INVOKE",
+					target = "Lcom/hollingsworth/arsnouveau/client/particle/ParticleUtil;spawnPoof(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V",
+					shift = Shift.AFTER,
+					ordinal = 0),
+			remap = false, cancellable = true)
+	private void georenouveau_tick(CallbackInfo ci) {
+		if (linkedGeOre != LinkedGeOre.DEFAULT) {
+			RitualAwakening ritual = (RitualAwakening) (Object) this;
+			Level level = ritual.getWorld();
+			LivingEntity walker = entity.create(level);
+			if (walker instanceof GeOreGolem golem) {
+				golem.setLinkedGeOre(linkedGeOre);
+				golem.setPos(foundPos.getX() + 0.5, foundPos.getY(), foundPos.getZ() + 0.5);
+				level.addFreshEntity(golem);
+			}
+			((AbstractRitualAccessor) ritual).georenouveau_setFinished();
+			ci.cancel();
 		}
 	}
 }

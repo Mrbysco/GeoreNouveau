@@ -7,7 +7,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.toString() == 'org.spongepowered.mixin') {
-                useModule("org.spongepowered:mixingradle:0.7-SNAPSHOT")
+                useModule("org.spongepowered:mixingradle:0.7.+")
             }
         }
     }

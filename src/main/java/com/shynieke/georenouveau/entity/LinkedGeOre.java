@@ -57,6 +57,10 @@ public enum LinkedGeOre {
 		this.charmItem = new LazyLoadedValue<>(charmSupplier);
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public Block getBlock() {
 		return georeBlock.get();
 	}

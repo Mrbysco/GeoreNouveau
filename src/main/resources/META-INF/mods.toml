@@ -28,11 +28,11 @@ side="BOTH"
 modId="geore"
 mandatory=true
 versionRange="[2.1.0,)"
-ordering="NONE"
+ordering="AFTER"
 side="BOTH"
 [[dependencies.georenouveau]]
 modId="ars_nouveau"
 mandatory=true
 versionRange="[3.2.10,)"
-ordering="NONE"
+ordering="AFTER"
 side="BOTH"
