@@ -99,29 +99,37 @@ mixin {
 repositories {
     maven {
         url = "https://dvs1.progwml6.com/files/maven"
+        content {
+            includeGroup "mezz.jei"
+        }
     }
     maven {
         url = "https://maven.blamejared.com"
+        content {
+            includeGroup "com.hollingsworth.ars_nouveau"
+            includeGroup "vazkii.patchouli"
+        }
     }
     maven {
         url = "https://maven.saps.dev/minecraft"
+        content {
+            includeGroup "com.shynieke.geore"
+        }
     }
     maven {
         url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
     }
     maven {
         url = "https://maven.theillusivec4.top/"
-    }
-    maven {
-        url = "https://www.cursemaven.com"
         content {
-            includeGroup "curse.maven"
+            includeGroup "top.theillusivec4.curios"
         }
     }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fg.deobf("com.shynieke.geore:GeOre-1.19:${geore_version}")
     implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
