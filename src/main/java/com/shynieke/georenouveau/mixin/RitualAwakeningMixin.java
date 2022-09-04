@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Mixin(RitualAwakening.class)
 public class RitualAwakeningMixin {
 
@@ -29,18 +32,21 @@ public class RitualAwakeningMixin {
 
 	@Inject(method = "Lcom/hollingsworth/arsnouveau/common/ritual/RitualAwakening;findTargets(Lnet/minecraft/world/level/Level;)V",
 			locals = LocalCapture.NO_CAPTURE, at = @At(
-			value = "TAIL"), remap = false)
+			value = "HEAD"), cancellable = true, remap = false)
 	private void georenouveau_findTargets(Level world, CallbackInfo ci) {
 		RitualAwakening ritual = (RitualAwakening) (Object) this;
 
 		linkedGeOre = LinkedGeOre.DEFAULT;
 		for (BlockPos p : BlockPos.withinManhattan(ritual.getPos(), 3, 1, 3)) {
-			for (LinkedGeOre linked : LinkedGeOre.values()) {
+			List<LinkedGeOre> linkedGeOres = Arrays.stream(LinkedGeOre.values()).filter(geore -> world.getBlockState(p).is(geore.getBudding())).toList();
+			if (!linkedGeOres.isEmpty()) {
+				LinkedGeOre linked = linkedGeOres.get(0);
 				if (world.getBlockState(p).is(linked.getBudding())) {
 					world.setBlock(p, Blocks.AIR.defaultBlockState(), 3);
 					entity = CompatRegistry.GEORE_GOLEM.get();
 					foundPos = p;
 					linkedGeOre = linked;
+					ci.cancel();
 					break;
 				}
 			}
