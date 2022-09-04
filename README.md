@@ -3,7 +3,7 @@
 # Geore Nouveau #
 
 ## About ##
-A small addon mod for GeOre and Ars Nouveau
+A small addon mod for GeOre and Ars Nouveau that adds golems for each GeOre
 
 ## License ##
 * Geore Nouveau is licensed under the GNU LGPL v3 License
