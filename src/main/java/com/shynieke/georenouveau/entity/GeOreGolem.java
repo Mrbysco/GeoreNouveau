@@ -7,6 +7,7 @@ import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.DepositAme
 import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.GrowClusterGoal;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.goal.GeOreConvertBuddingGoal;
+import com.shynieke.georenouveau.entity.goal.GeOreGrowClusterGoal;
 import com.shynieke.georenouveau.entity.goal.GeOreHarvestClusterGoal;
 import com.shynieke.georenouveau.entity.goal.GeOrePickupAmethystGoal;
 import com.shynieke.georenouveau.registry.CompatRegistry;
@@ -49,7 +50,7 @@ public class GeOreGolem extends AmethystGolem {
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(3, new GeOreConvertBuddingGoal(this, () -> convertCooldown <= 0 && getHome() != null && getHeldStack().isEmpty()));
-		this.goalSelector.addGoal(4, new GrowClusterGoal(this, () -> growCooldown <= 0 && getHome() != null && getHeldStack().isEmpty()));
+		this.goalSelector.addGoal(4, new GeOreGrowClusterGoal(this, () -> growCooldown <= 0 && getHome() != null && getHeldStack().isEmpty()));
 		this.goalSelector.addGoal(5, new GeOreHarvestClusterGoal(this, () -> harvestCooldown <= 0 && getHome() != null && !isImbueing() && getHeldStack().isEmpty()));
 		this.goalSelector.addGoal(2, new GeOrePickupAmethystGoal(this, () -> getHome() != null && pickupCooldown <= 0));
 		this.goalSelector.addGoal(2, new DepositAmethystGoal(this, () -> getHome() != null && !getHeldStack().isEmpty()));

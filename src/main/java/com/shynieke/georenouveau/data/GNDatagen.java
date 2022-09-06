@@ -102,7 +102,7 @@ public class GNDatagen {
 
 		protected void generateCharm(RegistryObject<Item> registryObject) {
 			singleTexture(registryObject.getId().getPath(), new ResourceLocation("item/generated"),
-					"layer0", modLoc("items/amethyst_golem_charm"));
+					"layer0", modLoc("items/" + registryObject.getId().getPath()));
 		}
 	}
 
