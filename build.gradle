@@ -117,12 +117,6 @@ repositories {
         }
     }
     maven {
-        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-        content {
-            includeGroup "software.bernie.geckolib"
-        }
-    }
-    maven {
         url = "https://maven.theillusivec4.top/"
         content {
             includeGroup "top.theillusivec4.curios"
@@ -134,10 +128,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("com.shynieke.geore:GeOre-1.19:${geore_version}")
+    implementation fg.deobf("com.shynieke.geore:GeOre-1.19.2:${geore_version}")
     implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
-    implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-1.19.1:${ars_version}")
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19:${gecko_version}")
+    implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-1.19.2:${ars_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

@@ -1,16 +1,12 @@
 package com.shynieke.georenouveau.data;
 
 import com.google.common.collect.ImmutableList;
-import com.google.gson.JsonElement;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.JsonOps;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.registry.CompatRegistry;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.EntityLoot;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -40,7 +36,6 @@ import java.util.stream.Stream;
 public class GNDatagen {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-		final RegistryOps<JsonElement> ops = RegistryOps.create(JsonOps.INSTANCE, RegistryAccess.builtinCopy());
 		DataGenerator generator = event.getGenerator();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 

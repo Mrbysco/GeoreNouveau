@@ -4,7 +4,7 @@ import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.GeOreGolem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.ars_nouveau.geckolib3.model.AnimatedGeoModel;
 
 public class GeOreGolemModel extends AnimatedGeoModel<GeOreGolem> {
 

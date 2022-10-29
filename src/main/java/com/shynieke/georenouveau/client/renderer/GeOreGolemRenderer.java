@@ -12,9 +12,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import software.bernie.geckolib3.geo.render.built.GeoBone;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
-import software.bernie.geckolib3.util.RenderUtils;
+import software.bernie.ars_nouveau.geckolib3.geo.render.built.GeoBone;
+import software.bernie.ars_nouveau.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.ars_nouveau.geckolib3.util.RenderUtils;
 
 import javax.annotation.Nullable;
 
