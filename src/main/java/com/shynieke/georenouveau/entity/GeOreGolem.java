@@ -4,7 +4,6 @@ import com.hollingsworth.arsnouveau.client.particle.ParticleUtil;
 import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.hollingsworth.arsnouveau.common.entity.goal.GoBackHomeGoal;
 import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.DepositAmethystGoal;
-import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.GrowClusterGoal;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.goal.GeOreConvertBuddingGoal;
 import com.shynieke.georenouveau.entity.goal.GeOreGrowClusterGoal;
