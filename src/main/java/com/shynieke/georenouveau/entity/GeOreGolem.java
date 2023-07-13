@@ -62,13 +62,13 @@ public class GeOreGolem extends AmethystGolem {
 		buddingBlocks = new ArrayList<>();
 		final LinkedGeOre linked = getLinkedGeOre();
 		for (BlockPos b : BlockPos.betweenClosed(pos.below(3).south(5).east(5), pos.above(10).north(5).west(5))) {
-			if (level.getBlockState(b).isAir())
+			if (this.level().getBlockState(b).isAir())
 				continue;
-			if (level.getBlockState(b).is(linked.getBlock())) {
+			if (this.level().getBlockState(b).is(linked.getBlock())) {
 				amethystBlocks.add(b.immutable());
 			}
 
-			if (level.getBlockState(b).is(linked.getBudding())) {
+			if (this.level().getBlockState(b).is(linked.getBudding())) {
 				buddingBlocks.add(b.immutable());
 			}
 		}
@@ -77,11 +77,11 @@ public class GeOreGolem extends AmethystGolem {
 
 	@Override
 	public void die(DamageSource source) {
-		if (!level.isClientSide) {
+		if (!this.level().isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
-			level.addFreshEntity(new ItemEntity(level, getX(), getY(), getZ(), stack));
+			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
 			if (this.getHeldStack() != null)
-				level.addFreshEntity(new ItemEntity(level, getX(), getY(), getZ(), this.getHeldStack()));
+				this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), this.getHeldStack()));
 		}
 
 		//Manually triggering LivingEntity's die so that it doesn't drop Bailey's Amethyst Golem Charm
@@ -97,20 +97,20 @@ public class GeOreGolem extends AmethystGolem {
 				this.stopSleeping();
 			}
 
-			if (!this.level.isClientSide && this.hasCustomName()) {
+			if (!this.level().isClientSide && this.hasCustomName()) {
 				GeOreNouveau.LOGGER.info("Named entity {} died: {}", this, this.getCombatTracker().getDeathMessage().getString());
 			}
 
 			this.dead = true;
 			this.getCombatTracker().recheckStatus();
-			if (this.level instanceof ServerLevel) {
-				if (entity == null || entity.wasKilled((ServerLevel) this.level, this)) {
+			if (this.level() instanceof ServerLevel) {
+				if (entity == null || entity.killedEntity((ServerLevel) this.level(), this)) {
 					this.gameEvent(GameEvent.ENTITY_DIE);
 					this.dropAllDeathLoot(source);
 					this.createWitherRose(livingentity);
 				}
 
-				this.level.broadcastEntityEvent(this, (byte) 3);
+				this.level().broadcastEntityEvent(this, (byte) 3);
 			}
 
 			this.setPose(Pose.DYING);
@@ -122,12 +122,12 @@ public class GeOreGolem extends AmethystGolem {
 		if (this.isRemoved())
 			return false;
 
-		if (!level.isClientSide) {
+		if (!this.level().isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
-			level.addFreshEntity(new ItemEntity(level, getX(), getY(), getZ(), stack.copy()));
+			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack.copy()));
 			stack = getHeldStack();
-			level.addFreshEntity(new ItemEntity(level, getX(), getY(), getZ(), stack));
-			ParticleUtil.spawnPoof((ServerLevel) level, blockPosition());
+			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
+			ParticleUtil.spawnPoof((ServerLevel) this.level(), blockPosition());
 			this.remove(RemovalReason.DISCARDED);
 		}
 		return true;

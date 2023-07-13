@@ -2,7 +2,6 @@ package com.shynieke.georenouveau.item;
 
 import com.hollingsworth.arsnouveau.api.item.AbstractSummonCharm;
 import com.hollingsworth.arsnouveau.common.block.tile.SummoningTile;
-import com.shynieke.geore.registry.GeOreTabs;
 import com.shynieke.georenouveau.entity.GeOreGolem;
 import com.shynieke.georenouveau.entity.LinkedGeOre;
 import com.shynieke.georenouveau.registry.CompatRegistry;
@@ -16,7 +15,7 @@ public class GeOreGolemCharm extends AbstractSummonCharm {
 	private final LinkedGeOre linkedGeOre;
 
 	public GeOreGolemCharm(LinkedGeOre linkedGeOre) {
-		super(new Item.Properties().tab(GeOreTabs.TAB_GEORE));
+		super(new Item.Properties());
 		this.linkedGeOre = linkedGeOre;
 	}
 

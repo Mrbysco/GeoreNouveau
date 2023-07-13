@@ -6,7 +6,6 @@
   "refmap": "georenouveau.refmap.json",
   "target": "@env(DEFAULT)",
   "mixins": [
-	"AbstractRitualAccessor",
 	"RitualAwakeningMixin"
   ]
 }

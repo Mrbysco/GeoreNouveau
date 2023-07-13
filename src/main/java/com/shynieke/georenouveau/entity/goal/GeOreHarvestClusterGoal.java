@@ -61,7 +61,7 @@ public class GeOreHarvestClusterGoal extends Goal {
 	}
 
 	public void harvest(BlockPos p) {
-		if (!(golem.level instanceof ServerLevel level)) return;
+		if (!(golem.level() instanceof ServerLevel level)) return;
 		for (Direction d : Direction.values()) {
 			BlockState state = level.getBlockState(p.relative(d));
 			if (state.is(golem.getLinkedGeOre().getCluster())) {
@@ -75,7 +75,7 @@ public class GeOreHarvestClusterGoal extends Goal {
 
 	public boolean hasCluster(BlockPos p) {
 		for (Direction d : Direction.values()) {
-			if (golem.level.getBlockState(p.relative(d)).is(golem.getLinkedGeOre().getCluster())) {
+			if (golem.level().getBlockState(p.relative(d)).is(golem.getLinkedGeOre().getCluster())) {
 				return true;
 			}
 		}

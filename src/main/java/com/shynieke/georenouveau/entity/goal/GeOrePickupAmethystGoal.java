@@ -54,7 +54,7 @@ public class GeOrePickupAmethystGoal extends Goal {
 	}
 
 	public void collectStacks() {
-		for (ItemEntity i : golem.level.getEntitiesOfClass(ItemEntity.class, new AABB(golem.getHome()).inflate(10))) {
+		for (ItemEntity i : golem.level().getEntitiesOfClass(ItemEntity.class, new AABB(golem.getHome()).inflate(10))) {
 			if (!i.getItem().is(golem.getLinkedGeOre().getShard())) continue;
 			int maxTake = golem.getHeldStack().getMaxStackSize() - golem.getHeldStack().getCount();
 			if (golem.getHeldStack().isEmpty()) {
@@ -81,7 +81,7 @@ public class GeOrePickupAmethystGoal extends Goal {
 	public void start() {
 		this.isDone = false;
 		this.usingTicks = 80;
-		for (ItemEntity entity : golem.level.getEntitiesOfClass(ItemEntity.class, new AABB(golem.getHome()).inflate(10))) {
+		for (ItemEntity entity : golem.level().getEntitiesOfClass(ItemEntity.class, new AABB(golem.getHome()).inflate(10))) {
 			if (entity.getItem().is(golem.getLinkedGeOre().getShard())) {
 				golem.getNavigation().tryMoveToBlockPos(entity.blockPosition(), 1f);
 				targetEntity = entity;
@@ -100,7 +100,7 @@ public class GeOrePickupAmethystGoal extends Goal {
 	@Override
 	public boolean canUse() {
 		if (golem.getHome() == null) return false;
-		BlockEntity entity = golem.getLevel().getBlockEntity(golem.getHome());
+		BlockEntity entity = golem.level().getBlockEntity(golem.getHome());
 		return canUse.get() && golem.pickupCooldown <= 0 && entity != null && entity.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent();
 	}
 }

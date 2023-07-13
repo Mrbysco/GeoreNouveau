@@ -46,9 +46,9 @@ public class GeOreConvertBuddingGoal extends Goal {
 
 	public void convert() {
 		LinkedGeOre linked = golem.getLinkedGeOre();
-		if (targetCluster != null && golem.level.getBlockState(targetCluster).is(linked.getBlock())) {
-			golem.level.setBlock(targetCluster, linked.getBudding().defaultBlockState(), 3);
-			ParticleUtil.spawnTouchPacket(golem.level, targetCluster, ParticleUtil.defaultParticleColorWrapper());
+		if (targetCluster != null && golem.level().getBlockState(targetCluster).is(linked.getBlock())) {
+			golem.level().setBlock(targetCluster, linked.getBudding().defaultBlockState(), 3);
+			ParticleUtil.spawnTouchPacket(golem.level(), targetCluster, ParticleUtil.defaultParticleColorWrapper());
 		}
 		golem.convertCooldown = 20 * 60 * 5;
 		golem.setImbueing(false);
@@ -61,7 +61,7 @@ public class GeOreConvertBuddingGoal extends Goal {
 		this.usingTicks = 120;
 		LinkedGeOre linked = golem.getLinkedGeOre();
 		for (BlockPos pos : golem.amethystBlocks) {
-			if (golem.level.getBlockState(pos).is(linked.getBlock())) {
+			if (golem.level().getBlockState(pos).is(linked.getBlock())) {
 				targetCluster = pos;
 				break;
 			}

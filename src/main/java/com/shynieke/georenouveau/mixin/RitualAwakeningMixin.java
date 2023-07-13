@@ -30,7 +30,7 @@ public class RitualAwakeningMixin {
 	private EntityType<? extends LivingEntity> entity;
 	private LinkedGeOre linkedGeOre;
 
-	@Inject(method = "Lcom/hollingsworth/arsnouveau/common/ritual/RitualAwakening;findTargets(Lnet/minecraft/world/level/Level;)V",
+	@Inject(method = "findTargets(Lnet/minecraft/world/level/Level;)V",
 			locals = LocalCapture.NO_CAPTURE, at = @At(
 			value = "HEAD"), cancellable = true, remap = false)
 	private void georenouveau_findTargets(Level world, CallbackInfo ci) {
@@ -53,7 +53,7 @@ public class RitualAwakeningMixin {
 		}
 	}
 
-	@Inject(method = "Lcom/hollingsworth/arsnouveau/common/ritual/RitualAwakening;tick()V",
+	@Inject(method = "tick()V",
 			at = @At(
 					value = "INVOKE",
 					target = "Lcom/hollingsworth/arsnouveau/client/particle/ParticleUtil;spawnPoof(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V",
@@ -70,7 +70,7 @@ public class RitualAwakeningMixin {
 				golem.setPos(foundPos.getX() + 0.5, foundPos.getY(), foundPos.getZ() + 0.5);
 				level.addFreshEntity(golem);
 			}
-			((AbstractRitualAccessor) ritual).georenouveau_setFinished();
+			ritual.setFinished();
 			ci.cancel();
 		}
 	}

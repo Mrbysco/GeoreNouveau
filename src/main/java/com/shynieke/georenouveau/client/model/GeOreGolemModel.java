@@ -4,9 +4,9 @@ import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.GeOreGolem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.ars_nouveau.geckolib3.model.AnimatedGeoModel;
+import software.bernie.ars_nouveau.geckolib.model.GeoModel;
 
-public class GeOreGolemModel extends AnimatedGeoModel<GeOreGolem> {
+public class GeOreGolemModel extends GeoModel<GeOreGolem> {
 
 	public static final ResourceLocation NORMAL_MODEL = new ResourceLocation(ArsNouveau.MODID, "geo/amethyst_golem.geo.json");
 	public static final ResourceLocation ANIMATIONS = new ResourceLocation(ArsNouveau.MODID, "animations/amethyst_golem_animations.json");

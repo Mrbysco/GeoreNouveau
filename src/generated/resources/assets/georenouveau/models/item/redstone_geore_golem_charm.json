@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "georenouveau:items/redstone_geore_golem_charm"
+    "layer0": "georenouveau:item/redstone_geore_golem_charm"
   }
 }

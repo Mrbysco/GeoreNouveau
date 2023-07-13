@@ -1,6 +1,6 @@
 package com.shynieke.georenouveau.entity;
 
-import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.registry.CompatRegistry;
 import net.minecraft.util.LazyLoadedValue;
@@ -8,8 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public enum LinkedGeOre {
