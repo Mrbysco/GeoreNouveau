@@ -122,6 +122,8 @@ repositories {
             includeGroup "top.theillusivec4.curios"
         }
     }
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven { url = "https://jitpack.io" }
 }
 
 dependencies {
@@ -131,7 +133,13 @@ dependencies {
     implementation fg.deobf("com.shynieke.geore:GeOre-${mc_version}:${geore_version}")
     implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${mc_version}:${gecko_version}")
+
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
+    implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
+    implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:${mixin_extras_version}")
 
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")

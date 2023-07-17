@@ -35,7 +35,7 @@ public class GeOreNouveau {
 	}
 
 	private void fillCreativeTab(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == GeOreRegistry.GEORE_TAB.getKey()) {
+		if (event.getTabKey().equals(GeOreRegistry.GEORE_TAB.getKey())) {
 			List<ItemStack> stacks = CompatRegistry.ITEMS.getEntries().stream().map(reg -> new ItemStack(reg.get())).toList();
 			event.acceptAll(stacks);
 		}

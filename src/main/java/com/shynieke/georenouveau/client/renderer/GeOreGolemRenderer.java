@@ -13,10 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.ars_nouveau.geckolib.cache.object.BakedGeoModel;
-import software.bernie.ars_nouveau.geckolib.cache.object.GeoBone;
-import software.bernie.ars_nouveau.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.ars_nouveau.geckolib.util.RenderUtils;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import software.bernie.geckolib.util.RenderUtils;
 
 public class GeOreGolemRenderer extends GeoEntityRenderer<GeOreGolem> {
 	public GeOreGolemRenderer(EntityRendererProvider.Context renderManager) {
