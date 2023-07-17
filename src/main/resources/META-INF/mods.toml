@@ -21,7 +21,7 @@ side="BOTH"
 [[dependencies.georenouveau]]
 modId="forge"
 mandatory=true
-versionRange="[47.0.35,)"
+versionRange="[47.1.0,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.georenouveau]]

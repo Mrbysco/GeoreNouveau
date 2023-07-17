@@ -1,1 +1,1 @@
-* Initial update to 1.20.1
+* Fix compatibility with Ars Nouveau 4.2.0
