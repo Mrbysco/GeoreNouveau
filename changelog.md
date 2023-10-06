@@ -1,1 +1,1 @@
-* Fix compatibility with Ars Nouveau 4.2.0
+* Fix compatibility with Ars Nouveau 4.5.0
