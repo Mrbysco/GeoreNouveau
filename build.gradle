@@ -204,7 +204,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 apply from: 'gradle/curseforge.gradle'
-//apply from: 'gradle/modrinth.gradle'
+apply from: 'gradle/modrinth.gradle'
 
 ////////////////
 // IntelliJ Project Import
