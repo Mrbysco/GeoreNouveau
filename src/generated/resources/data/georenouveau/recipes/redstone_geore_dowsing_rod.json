@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:redstone"
+    },
+    "R": {
+      "item": "georenouveau:redstone_geore_dowsing_rod"
+    }
+  },
+  "pattern": [
+    " O ",
+    "ORO",
+    " O "
+  ],
+  "result": {
+    "item": "georenouveau:redstone_geore_dowsing_rod"
+  },
+  "show_notification": true
+}

@@ -24,6 +24,7 @@ public class GeOreNouveau {
 		eventBus.addListener(CompatRegistry::registerEntityAttributes);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			eventBus.addListener(ClientHandler::clientSetup);
 			eventBus.addListener(ClientHandler::registerRenderers);
 		});
 	}

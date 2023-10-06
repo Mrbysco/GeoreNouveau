@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:coal"
+    },
+    "R": {
+      "item": "georenouveau:coal_geore_dowsing_rod"
+    }
+  },
+  "pattern": [
+    " O ",
+    "ORO",
+    " O "
+  ],
+  "result": {
+    "item": "georenouveau:coal_geore_dowsing_rod"
+  },
+  "show_notification": true
+}

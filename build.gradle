@@ -124,6 +124,13 @@ repositories {
             includeGroup "top.theillusivec4.curios"
         }
     }
+    maven { url = "https://jitpack.io" }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -135,10 +142,16 @@ dependencies {
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-1.19.2:${ars_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
 
+    implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
+    implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:${mixin_extras_version}")
+
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
 
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+
+    implementation fg.deobf("curse.maven:gems-and-crystals-334162:4766843") //Gems and Crystals (For optional dowsing rod recipes)
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

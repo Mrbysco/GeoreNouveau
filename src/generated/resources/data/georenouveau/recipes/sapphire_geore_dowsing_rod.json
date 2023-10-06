@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "gemsandcrystals"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "O": {
+            "item": "gemsandcrystals:sapphire"
+          },
+          "R": {
+            "item": "georenouveau:sapphire_geore_dowsing_rod"
+          }
+        },
+        "pattern": [
+          " O ",
+          "ORO",
+          " O "
+        ],
+        "result": {
+          "item": "georenouveau:sapphire_geore_dowsing_rod"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

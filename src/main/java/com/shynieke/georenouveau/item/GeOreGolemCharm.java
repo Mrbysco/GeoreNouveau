@@ -7,6 +7,7 @@ import com.shynieke.georenouveau.entity.GeOreGolem;
 import com.shynieke.georenouveau.entity.LinkedGeOre;
 import com.shynieke.georenouveau.registry.CompatRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
@@ -18,6 +19,7 @@ public class GeOreGolemCharm extends AbstractSummonCharm {
 	public GeOreGolemCharm(LinkedGeOre linkedGeOre) {
 		super(new Item.Properties().tab(GeOreTabs.TAB_GEORE));
 		this.linkedGeOre = linkedGeOre;
+		withTooltip(Component.translatable("tooltip.geore_nouveau." + linkedGeOre.getName() + "_charm"));
 	}
 
 	@Override
