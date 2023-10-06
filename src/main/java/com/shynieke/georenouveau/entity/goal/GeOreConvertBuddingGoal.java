@@ -1,6 +1,7 @@
 package com.shynieke.georenouveau.entity.goal;
 
 import com.hollingsworth.arsnouveau.api.util.BlockUtil;
+import com.hollingsworth.arsnouveau.client.particle.ParticleColor;
 import com.hollingsworth.arsnouveau.client.particle.ParticleUtil;
 import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.shynieke.georenouveau.entity.GeOreGolem;
@@ -48,7 +49,7 @@ public class GeOreConvertBuddingGoal extends Goal {
 		LinkedGeOre linked = golem.getLinkedGeOre();
 		if (targetCluster != null && golem.level().getBlockState(targetCluster).is(linked.getBlock())) {
 			golem.level().setBlock(targetCluster, linked.getBudding().defaultBlockState(), 3);
-			ParticleUtil.spawnTouchPacket(golem.level(), targetCluster, ParticleUtil.defaultParticleColorWrapper());
+			ParticleUtil.spawnTouchPacket(golem.level(), targetCluster, ParticleColor.defaultParticleColor());
 		}
 		golem.convertCooldown = 20 * 60 * 5;
 		golem.setImbueing(false);
