@@ -1,1 +1,1 @@
-* Fix compatibility with Ars Nouveau 4.5.0
+* Add Dowsing Rods for each GeOre
