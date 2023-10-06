@@ -30,6 +30,7 @@ public class GeOreNouveau {
 		eventBus.addListener(this::fillCreativeTab);
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			eventBus.addListener(ClientHandler::clientSetup);
 			eventBus.addListener(ClientHandler::registerRenderers);
 		});
 	}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:copper_ingot"
+    },
+    "R": {
+      "item": "georenouveau:copper_geore_dowsing_rod"
+    }
+  },
+  "pattern": [
+    " O ",
+    "ORO",
+    " O "
+  ],
+  "result": {
+    "item": "georenouveau:copper_geore_dowsing_rod"
+  },
+  "show_notification": true
+}
