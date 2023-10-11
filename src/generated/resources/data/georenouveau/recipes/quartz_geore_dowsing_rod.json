@@ -6,7 +6,7 @@
       "item": "minecraft:quartz"
     },
     "R": {
-      "item": "georenouveau:quartz_geore_dowsing_rod"
+      "item": "ars_nouveau:dowsing_rod"
     }
   },
   "pattern": [

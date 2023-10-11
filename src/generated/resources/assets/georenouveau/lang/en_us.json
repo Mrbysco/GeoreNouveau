@@ -24,6 +24,8 @@
   "item.georenouveau.sapphire_geore_golem_charm": "Sapphire GeOre Golem Charm",
   "item.georenouveau.topaz_geore_dowsing_rod": "Topaz GeOre Dowsing Rod",
   "item.georenouveau.topaz_geore_golem_charm": "Topaz GeOre Golem Charm",
+  "item.georenouveau.zinc_geore_dowsing_rod": "Zinc GeOre Dowsing Rod",
+  "item.georenouveau.zinc_geore_golem_charm": "Zinc GeOre Golem Charm",
   "tooltip.geore_nouveau.coal_charm": "Obtained by performing the Ritual of Awakening near Budding Coal Geore",
   "tooltip.geore_nouveau.coal_dowsing_rod": "Grants Magic Find and Scrying on use, causing magical creatures to glow and Coal Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.",
   "tooltip.geore_nouveau.copper_charm": "Obtained by performing the Ritual of Awakening near Budding Copper Geore",
@@ -47,5 +49,7 @@
   "tooltip.geore_nouveau.sapphire_charm": "Obtained by performing the Ritual of Awakening near Budding Sapphire Geore",
   "tooltip.geore_nouveau.sapphire_dowsing_rod": "Grants Magic Find and Scrying on use, causing magical creatures to glow and Sapphire Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.",
   "tooltip.geore_nouveau.topaz_charm": "Obtained by performing the Ritual of Awakening near Budding Topaz Geore",
-  "tooltip.geore_nouveau.topaz_dowsing_rod": "Grants Magic Find and Scrying on use, causing magical creatures to glow and Topaz Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals."
+  "tooltip.geore_nouveau.topaz_dowsing_rod": "Grants Magic Find and Scrying on use, causing magical creatures to glow and Topaz Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.",
+  "tooltip.geore_nouveau.zinc_charm": "Obtained by performing the Ritual of Awakening near Budding Zinc Geore",
+  "tooltip.geore_nouveau.zinc_dowsing_rod": "Grants Magic Find and Scrying on use, causing magical creatures to glow and Zinc Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals."
 }

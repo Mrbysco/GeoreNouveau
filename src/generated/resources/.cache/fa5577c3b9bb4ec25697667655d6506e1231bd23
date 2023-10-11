@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-06T22:08:20.7843615	Item Models: georenouveau
+// 1.20.1	2023-10-11T17:01:47.0009665	Item Models: georenouveau
 7654b2497dc41722b15331f99204a0cb06c5f219 assets/georenouveau/models/item/coal_geore_dowsing_rod.json
 d77e2e327c8c0020bf4b6a9f6bc1dbf382c7c37f assets/georenouveau/models/item/coal_geore_golem_charm.json
 7654b2497dc41722b15331f99204a0cb06c5f219 assets/georenouveau/models/item/copper_geore_dowsing_rod.json
@@ -23,3 +23,5 @@ d02e4273cc14b58acadd720edf3c5d0447e9f690 assets/georenouveau/models/item/ruby_ge
 80fb357b1767009a6fbb73233f61c5ee3e9d6592 assets/georenouveau/models/item/sapphire_geore_golem_charm.json
 7654b2497dc41722b15331f99204a0cb06c5f219 assets/georenouveau/models/item/topaz_geore_dowsing_rod.json
 a00d70a50c4e41a1dd0dd3ee0f18153fcc673b90 assets/georenouveau/models/item/topaz_geore_golem_charm.json
+7654b2497dc41722b15331f99204a0cb06c5f219 assets/georenouveau/models/item/zinc_geore_dowsing_rod.json
+efbeb3bb49e2d18b18ec2d11cb43a1b66996505a assets/georenouveau/models/item/zinc_geore_golem_charm.json

@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "R": {
-      "item": "georenouveau:gold_geore_dowsing_rod"
+      "item": "ars_nouveau:dowsing_rod"
     }
   },
   "pattern": [

@@ -36,6 +36,7 @@ public class CompatRegistry {
 	public static final RegistryObject<Item> RUBY_GEORE_GOLEM_CHARM = ITEMS.register("ruby_geore_golem_charm", () -> new GeOreGolemCharm(LinkedGeOre.RUBY));
 	public static final RegistryObject<Item> SAPPHIRE_GEORE_GOLEM_CHARM = ITEMS.register("sapphire_geore_golem_charm", () -> new GeOreGolemCharm(LinkedGeOre.SAPPHIRE));
 	public static final RegistryObject<Item> TOPAZ_GEORE_GOLEM_CHARM = ITEMS.register("topaz_geore_golem_charm", () -> new GeOreGolemCharm(LinkedGeOre.TOPAZ));
+	public static final RegistryObject<Item> ZINC_GEORE_GOLEM_CHARM = ITEMS.register("zinc_geore_golem_charm", () -> new GeOreGolemCharm(LinkedGeOre.ZINC));
 
 	public static final RegistryObject<Item> COAL_GEORE_DOWSING_ROD = ITEMS.register("coal_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.COAL));
 	public static final RegistryObject<Item> COPPER_GEORE_DOWSING_ROD = ITEMS.register("copper_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.COPPER));
@@ -49,6 +50,7 @@ public class CompatRegistry {
 	public static final RegistryObject<Item> RUBY_GEORE_DOWSING_ROD = ITEMS.register("ruby_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.RUBY));
 	public static final RegistryObject<Item> SAPPHIRE_GEORE_DOWSING_ROD = ITEMS.register("sapphire_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.SAPPHIRE));
 	public static final RegistryObject<Item> TOPAZ_GEORE_DOWSING_ROD = ITEMS.register("topaz_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.TOPAZ));
+	public static final RegistryObject<Item> ZINC_GEORE_DOWSING_ROD = ITEMS.register("zinc_geore_dowsing_rod", () -> new GeOreDowsingRod(LinkedGeOre.ZINC));
 
 	public static final RegistryObject<EntityDataSerializer<LinkedGeOre>> LINKED_SERIALIZER = ENTITY_DATA_SERIALIZER.register("linked_geore", () -> new LinkedGeOreSerializer());
 

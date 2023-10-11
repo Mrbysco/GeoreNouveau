@@ -38,7 +38,9 @@ public enum LinkedGeOre {
 	SAPPHIRE("sapphire", () -> GeOreRegistry.SAPPHIRE_GEORE.getBlock().get(), () -> GeOreRegistry.SAPPHIRE_GEORE.getBudding().get(),
 			() -> GeOreRegistry.SAPPHIRE_GEORE.getCluster().get(), () -> GeOreRegistry.SAPPHIRE_GEORE.getShard().get(), () -> CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM.get()),
 	TOPAZ("topaz", () -> GeOreRegistry.TOPAZ_GEORE.getBlock().get(), () -> GeOreRegistry.TOPAZ_GEORE.getBudding().get(),
-			() -> GeOreRegistry.TOPAZ_GEORE.getCluster().get(), () -> GeOreRegistry.TOPAZ_GEORE.getShard().get(), () -> CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM.get());
+			() -> GeOreRegistry.TOPAZ_GEORE.getCluster().get(), () -> GeOreRegistry.TOPAZ_GEORE.getShard().get(), () -> CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM.get()),
+	ZINC("zinc", () -> GeOreRegistry.ZINC_GEORE.getBlock().get(), () -> GeOreRegistry.ZINC_GEORE.getBudding().get(),
+			() -> GeOreRegistry.ZINC_GEORE.getCluster().get(), () -> GeOreRegistry.ZINC_GEORE.getShard().get(), () -> CompatRegistry.ZINC_GEORE_GOLEM_CHARM.get());
 
 	public final String name;
 	public final LazyLoadedValue<Block> georeBlock;

@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "R": {
-      "item": "georenouveau:redstone_geore_dowsing_rod"
+      "item": "ars_nouveau:dowsing_rod"
     }
   },
   "pattern": [
