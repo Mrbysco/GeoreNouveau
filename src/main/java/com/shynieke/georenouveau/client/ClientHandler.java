@@ -33,6 +33,7 @@ public class ClientHandler {
 			rods.add(CompatRegistry.RUBY_GEORE_DOWSING_ROD.get());
 			rods.add(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD.get());
 			rods.add(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.ZINC_GEORE_DOWSING_ROD.get());
 
 			for (Item rod : rods) {
 				ItemProperties.register(rod, new ResourceLocation(ArsNouveau.MODID, "uses"), new ClampedItemPropertyFunction() {

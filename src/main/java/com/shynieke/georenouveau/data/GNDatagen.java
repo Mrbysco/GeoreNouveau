@@ -1,6 +1,7 @@
 package com.shynieke.georenouveau.data;
 
 import com.google.common.collect.ImmutableList;
+import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.mojang.datafixers.util.Pair;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.registry.CompatRegistry;
@@ -75,6 +76,7 @@ public class GNDatagen {
 			generateCharmLang(CompatRegistry.RUBY_GEORE_GOLEM_CHARM, "Ruby");
 			generateCharmLang(CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM, "Sapphire");
 			generateCharmLang(CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM, "Topaz");
+			generateCharmLang(CompatRegistry.ZINC_GEORE_GOLEM_CHARM, "Zinc");
 
 			generateDowsingLang(CompatRegistry.COAL_GEORE_DOWSING_ROD, "Coal");
 			generateDowsingLang(CompatRegistry.COPPER_GEORE_DOWSING_ROD, "Copper");
@@ -88,6 +90,7 @@ public class GNDatagen {
 			generateDowsingLang(CompatRegistry.RUBY_GEORE_DOWSING_ROD, "Ruby");
 			generateDowsingLang(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, "Sapphire");
 			generateDowsingLang(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, "Topaz");
+			generateDowsingLang(CompatRegistry.ZINC_GEORE_DOWSING_ROD, "Zinc");
 		}
 
 		protected void generateCharmLang(RegistryObject<Item> registryObject, String name) {
@@ -120,6 +123,7 @@ public class GNDatagen {
 			generateCharm(CompatRegistry.RUBY_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.ZINC_GEORE_GOLEM_CHARM);
 
 			generateRod(CompatRegistry.COAL_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.COPPER_GEORE_DOWSING_ROD);
@@ -133,6 +137,7 @@ public class GNDatagen {
 			generateRod(CompatRegistry.RUBY_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.ZINC_GEORE_DOWSING_ROD);
 		}
 
 		protected void generateCharm(RegistryObject<Item> registryObject) {
@@ -217,9 +222,9 @@ public class GNDatagen {
 					.pattern(" O ")
 					.pattern("ORO")
 					.pattern(" O ")
-					.define('R', rod.get())
+					.define('R', ItemsRegistry.DOWSING_ROD)
 					.define('O', itemLike)
-					.unlockedBy("has_dowsing_rod", has(rod.get()))
+					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
 					.unlockedBy("has_ore", has(itemLike))
 					.save(consumer);
 		}
@@ -240,9 +245,9 @@ public class GNDatagen {
 							.pattern(" O ")
 							.pattern("ORO")
 							.pattern(" O ")
-							.define('R', rod.get())
+							.define('R', ItemsRegistry.DOWSING_ROD)
 							.define('O', itemLike)
-							.unlockedBy("has_dowsing_rod", has(rod.get()))
+							.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
 							.unlockedBy("has_ore", has(itemLike))
 							::save)
 					.build(consumer, new ResourceLocation(GeOreNouveau.MOD_ID, rod.getId().getPath()));

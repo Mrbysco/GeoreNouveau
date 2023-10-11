@@ -5,7 +5,7 @@
       "conditions": [
         {
           "type": "forge:mod_loaded",
-          "modid": "gemsandcrystals"
+          "modid": "create"
         }
       ],
       "recipe": {
@@ -13,7 +13,7 @@
         "category": "misc",
         "key": {
           "O": {
-            "item": "gemsandcrystals:sapphire"
+            "item": "create:zinc_ingot"
           },
           "R": {
             "item": "ars_nouveau:dowsing_rod"
@@ -25,7 +25,7 @@
           " O "
         ],
         "result": {
-          "item": "georenouveau:sapphire_geore_dowsing_rod"
+          "item": "georenouveau:zinc_geore_dowsing_rod"
         },
         "show_notification": true
       }

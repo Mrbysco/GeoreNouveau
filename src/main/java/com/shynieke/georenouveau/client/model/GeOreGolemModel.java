@@ -24,6 +24,7 @@ public class GeOreGolemModel extends AnimatedGeoModel<GeOreGolem> {
 			new ResourceLocation(GeOreNouveau.MOD_ID, "textures/entity/redstone_golem.png"),
 			new ResourceLocation(GeOreNouveau.MOD_ID, "textures/entity/lapis_golem.png"),
 			new ResourceLocation(GeOreNouveau.MOD_ID, "textures/entity/gold_golem.png"),
+			new ResourceLocation(GeOreNouveau.MOD_ID, "textures/entity/zinc_golem.png"),
 	};
 
 	@Override
@@ -37,7 +38,7 @@ public class GeOreGolemModel extends AnimatedGeoModel<GeOreGolem> {
 	}
 
 	@Override
-	public ResourceLocation getAnimationResource(GeOreGolem drygmy) {
+	public ResourceLocation getAnimationResource(GeOreGolem golem) {
 		return ANIMATIONS;
 	}
 
