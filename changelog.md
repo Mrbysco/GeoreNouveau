@@ -1,1 +1,2 @@
-* Add Dowsing Rods for each GeOre
+* Add Zinc Charm and Dowsing Rod
+* Fix Dowsing Rod Recipes
