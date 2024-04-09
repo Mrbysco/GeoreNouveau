@@ -6,7 +6,6 @@ import com.shynieke.georenouveau.entity.LinkedGeOre;
 import com.shynieke.georenouveau.entity.serializer.LinkedGeOreSerializer;
 import com.shynieke.georenouveau.item.GeOreDowsingRod;
 import com.shynieke.georenouveau.item.GeOreGolemCharm;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
