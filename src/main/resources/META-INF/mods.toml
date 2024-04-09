@@ -27,7 +27,7 @@ side="BOTH"
 [[dependencies.georenouveau]]
 modId="geore"
 mandatory=true
-versionRange="[2.1.0,)"
+versionRange="[2.3.0,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.georenouveau]]
