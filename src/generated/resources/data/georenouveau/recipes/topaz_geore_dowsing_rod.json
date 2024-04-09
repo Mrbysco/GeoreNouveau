@@ -10,7 +10,6 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "category": "misc",
         "key": {
           "O": {
             "item": "gemsandcrystals:topaz"
@@ -26,8 +25,7 @@
         ],
         "result": {
           "item": "georenouveau:topaz_geore_dowsing_rod"
-        },
-        "show_notification": true
+        }
       }
     }
   ]

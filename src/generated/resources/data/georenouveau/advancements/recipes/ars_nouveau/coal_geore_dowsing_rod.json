@@ -18,7 +18,7 @@
         "items": [
           {
             "items": [
-              "minecraft:gold_ingot"
+              "minecraft:coal"
             ]
           }
         ]
@@ -27,7 +27,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "georenouveau:gold_geore_dowsing_rod"
+        "recipe": "georenouveau:coal_geore_dowsing_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,8 +41,7 @@
   ],
   "rewards": {
     "recipes": [
-      "georenouveau:gold_geore_dowsing_rod"
+      "georenouveau:coal_geore_dowsing_rod"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

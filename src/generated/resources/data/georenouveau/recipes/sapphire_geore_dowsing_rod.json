@@ -10,7 +10,6 @@
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "category": "misc",
         "key": {
           "O": {
             "item": "gemsandcrystals:sapphire"
@@ -26,8 +25,7 @@
         ],
         "result": {
           "item": "georenouveau:sapphire_geore_dowsing_rod"
-        },
-        "show_notification": true
+        }
       }
     }
   ]
