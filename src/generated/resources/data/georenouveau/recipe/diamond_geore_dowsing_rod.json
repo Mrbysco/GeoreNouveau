@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "O": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:diamond"
     },
     "R": {
       "item": "ars_nouveau:dowsing_rod"
@@ -15,7 +15,7 @@
     " O "
   ],
   "result": {
-    "item": "georenouveau:gold_geore_dowsing_rod"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "georenouveau:diamond_geore_dowsing_rod"
+  }
 }

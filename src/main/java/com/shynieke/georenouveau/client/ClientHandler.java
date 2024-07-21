@@ -10,8 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class ClientHandler {
 			rods.add(CompatRegistry.ZINC_GEORE_DOWSING_ROD.get());
 
 			for (Item rod : rods) {
-				ItemProperties.register(rod, new ResourceLocation(ArsNouveau.MODID, "uses"), new ClampedItemPropertyFunction() {
+				ItemProperties.register(rod, ResourceLocation.fromNamespaceAndPath(ArsNouveau.MODID, "uses"), new ClampedItemPropertyFunction() {
 					@Override
 					public float unclampedCall(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity livingEntity, int index) {
 						return switch (stack.getDamageValue()) {

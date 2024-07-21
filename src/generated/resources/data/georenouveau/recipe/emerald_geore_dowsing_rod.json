@@ -15,7 +15,7 @@
     " O "
   ],
   "result": {
-    "item": "georenouveau:emerald_geore_dowsing_rod"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "georenouveau:emerald_geore_dowsing_rod"
+  }
 }

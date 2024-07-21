@@ -30,6 +30,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class GeOreGolem extends AmethystGolem {
 		}
 
 		//Manually triggering LivingEntity's die so that it doesn't drop Bailey's Amethyst Golem Charm
-		if (net.minecraftforge.common.ForgeHooks.onLivingDeath(this, source)) return;
+		if (CommonHooks.onLivingDeath(this, source)) return;
 		if (!this.isRemoved() && !this.dead) {
 			Entity entity = source.getEntity();
 			LivingEntity livingentity = this.getKillCredit();
@@ -103,10 +104,10 @@ public class GeOreGolem extends AmethystGolem {
 
 			this.dead = true;
 			this.getCombatTracker().recheckStatus();
-			if (this.level() instanceof ServerLevel) {
+			if (this.level() instanceof ServerLevel serverLevel) {
 				if (entity == null || entity.killedEntity((ServerLevel) this.level(), this)) {
 					this.gameEvent(GameEvent.ENTITY_DIE);
-					this.dropAllDeathLoot(source);
+					this.dropAllDeathLoot(serverLevel, source);
 					this.createWitherRose(livingentity);
 				}
 
@@ -134,9 +135,9 @@ public class GeOreGolem extends AmethystGolem {
 	}
 
 	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(LINKED_GEORE, LinkedGeOre.DEFAULT);
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(LINKED_GEORE, LinkedGeOre.DEFAULT);
 	}
 
 	public void setLinkedGeOre(LinkedGeOre linked) {

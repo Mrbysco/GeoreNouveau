@@ -22,16 +22,16 @@ public class GeOreGolemCharm extends AbstractSummonCharm {
 	}
 
 	@Override
-	public InteractionResult useOnBlock(UseOnContext context, Level world, BlockPos pos) {
-		GeOreGolem golem = new GeOreGolem(CompatRegistry.GEORE_GOLEM.get(), world);
+	public InteractionResult useOnBlock(UseOnContext context, Level level, BlockPos pos) {
+		GeOreGolem golem = new GeOreGolem(CompatRegistry.GEORE_GOLEM.get(), level);
 		golem.setPos(pos.getX(), pos.above().getY(), pos.getZ());
 		golem.setLinkedGeOre(linkedGeOre);
-		world.addFreshEntity(golem);
+		level.addFreshEntity(golem);
 		return InteractionResult.SUCCESS;
 	}
 
 	@Override
-	public InteractionResult useOnSummonTile(UseOnContext context, Level world, SummoningTile tile, BlockPos pos) {
-		return useOnBlock(context, world, pos);
+	public InteractionResult useOnSummonTile(UseOnContext context, Level level, SummoningTile summoningTile, BlockPos pos) {
+		return useOnBlock(context, level, pos);
 	}
 }

@@ -5,12 +5,10 @@ import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.client.ClientHandler;
 import com.shynieke.georenouveau.registry.CompatRegistry;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -20,8 +18,7 @@ public class GeOreNouveau {
 	public static final String MOD_ID = "georenouveau";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public GeOreNouveau() {
-		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+	public GeOreNouveau(IEventBus eventBus, Dist dist) {
 		CompatRegistry.ENTITY_TYPES.register(eventBus);
 		CompatRegistry.ENTITY_DATA_SERIALIZER.register(eventBus);
 		CompatRegistry.ITEMS.register(eventBus);
@@ -29,10 +26,10 @@ public class GeOreNouveau {
 		eventBus.addListener(CompatRegistry::registerEntityAttributes);
 		eventBus.addListener(this::fillCreativeTab);
 
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+		if (dist.isClient()) {
 			eventBus.addListener(ClientHandler::clientSetup);
 			eventBus.addListener(ClientHandler::registerRenderers);
-		});
+		}
 	}
 
 	private void fillCreativeTab(BuildCreativeModeTabContentsEvent event) {

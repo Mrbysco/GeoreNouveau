@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[47,)"
+loaderVersion="[4,)"
 issueTrackerURL="https://github.com/Mrbysco/GeoreNouveau/issues"
 license="GNU LGPL v3"
 
@@ -14,25 +14,27 @@ Small addon mod for GeOre and Ars Nouveau
 '''
 [[dependencies.georenouveau]]
 modId="minecraft"
-mandatory=true
-versionRange="[1.20.1,1.21)"
+type="required"
+versionRange="[1.21,1.22)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.georenouveau]]
-modId="forge"
-mandatory=true
-versionRange="[47.1.0,)"
+modId="neoforge"
+type="required"
+versionRange="[21.0.110-beta,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.georenouveau]]
 modId="geore"
-mandatory=true
-versionRange="[2.4.1,)"
+type="required"
+versionRange="[6.0.4,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.georenouveau]]
 modId="ars_nouveau"
-mandatory=true
-versionRange="[4.5.0,)"
+type="required"
+versionRange="[5.0.0,)"
 ordering="AFTER"
 side="BOTH"
+[[mixins]]
+config="georenouveau.mixins.json"

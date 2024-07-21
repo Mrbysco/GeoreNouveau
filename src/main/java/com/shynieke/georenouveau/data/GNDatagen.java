@@ -2,16 +2,22 @@ package com.shynieke.georenouveau.data;
 
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
+import com.shynieke.georenouveau.item.GeOreDowsingRod;
+import com.shynieke.georenouveau.item.GeOreGolemCharm;
 import com.shynieke.georenouveau.registry.CompatRegistry;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.WritableRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -20,34 +26,33 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class GNDatagen {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
+		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 		ExistingFileHelper helper = event.getExistingFileHelper();
 
-		generator.addProvider(event.includeServer(), new Loots(packOutput));
-		generator.addProvider(event.includeServer(), new Recipes(packOutput));
+		generator.addProvider(event.includeServer(), new Loots(packOutput, lookupProvider));
+		generator.addProvider(event.includeServer(), new Recipes(packOutput, lookupProvider));
 		if (event.includeClient()) {
 			generator.addProvider(event.includeClient(), new Language(packOutput));
 			generator.addProvider(event.includeClient(), new ItemModels(packOutput, helper));
@@ -91,12 +96,12 @@ public class GNDatagen {
 			generateDowsingLang(CompatRegistry.ZINC_GEORE_DOWSING_ROD, "Zinc");
 		}
 
-		protected void generateCharmLang(RegistryObject<Item> registryObject, String name) {
+		protected void generateCharmLang(DeferredItem<GeOreGolemCharm> registryObject, String name) {
 			addItem(registryObject, name + " GeOre Golem Charm");
 			add("tooltip.geore_nouveau." + name.toLowerCase(Locale.ROOT) + "_charm", "Obtained by performing the Ritual of Awakening near Budding " + name + " Geore");
 		}
 
-		protected void generateDowsingLang(RegistryObject<Item> registryObject, String name) {
+		protected void generateDowsingLang(DeferredItem<GeOreDowsingRod> registryObject, String name) {
 			addItem(registryObject, name + " GeOre Dowsing Rod");
 			add("tooltip.geore_nouveau." + name.toLowerCase(Locale.ROOT) + "_dowsing_rod", "Grants Magic Find and Scrying on use, causing magical creatures to glow and " + name + " Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.");
 		}
@@ -138,26 +143,26 @@ public class GNDatagen {
 			generateRod(CompatRegistry.ZINC_GEORE_DOWSING_ROD);
 		}
 
-		protected void generateCharm(RegistryObject<Item> registryObject) {
-			singleTexture(registryObject.getId().getPath(), new ResourceLocation("item/generated"),
-					"layer0", modLoc("item/" + registryObject.getId().getPath()));
+		protected void generateCharm(DeferredItem<GeOreGolemCharm> deferredItem) {
+			singleTexture(deferredItem.getId().getPath(), ResourceLocation.withDefaultNamespace("item/generated"),
+					"layer0", modLoc("item/" + deferredItem.getId().getPath()));
 		}
 
-		protected void generateRod(RegistryObject<Item> registryObject) {
-			withExistingParent(registryObject.getId().getPath(), modLoc("item/dowsing_rod"));
+		protected void generateRod(DeferredItem<GeOreDowsingRod> deferredItem) {
+			withExistingParent(deferredItem.getId().getPath(), modLoc("item/dowsing_rod"));
 		}
 	}
 
 	private static class Loots extends LootTableProvider {
-		public Loots(PackOutput packOutput) {
+		public Loots(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
 			super(packOutput, Set.of(), List.of(
 					new SubProviderEntry(CompatEntityLoot::new, LootContextParamSets.ENTITY)
-			));
+			), lookupProvider);
 		}
 
 		public static class CompatEntityLoot extends EntityLootSubProvider {
-			protected CompatEntityLoot() {
-				super(FeatureFlags.REGISTRY.allFlags());
+			protected CompatEntityLoot(HolderLookup.Provider provider) {
+				super(FeatureFlags.REGISTRY.allFlags(), provider);
 			}
 
 			@Override
@@ -167,52 +172,52 @@ public class GNDatagen {
 
 			@Override
 			protected Stream<EntityType<?>> getKnownEntityTypes() {
-				return CompatRegistry.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
+				return CompatRegistry.ENTITY_TYPES.getEntries().stream().map(DeferredHolder::value);
 			}
 		}
 
 		@Override
-		protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationContext) {
-			map.forEach((name, table) -> table.validate(validationContext));
+		protected void validate(WritableRegistry<LootTable> writableregistry, ValidationContext validationcontext, ProblemReporter.Collector problemreporter$collector) {
+			super.validate(writableregistry, validationcontext, problemreporter$collector);
 		}
 	}
 
 	private static class Recipes extends RecipeProvider {
-		public Recipes(PackOutput packOutput) {
-			super(packOutput);
+		public Recipes(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+			super(packOutput, lookupProvider);
 		}
 
 		@Override
-		protected void buildRecipes(Consumer<FinishedRecipe> recipeConsumer) {
-			generateRodRecipe(CompatRegistry.COAL_GEORE_DOWSING_ROD, Items.COAL, recipeConsumer);
-			generateRodRecipe(CompatRegistry.COPPER_GEORE_DOWSING_ROD, Items.COPPER_INGOT, recipeConsumer);
-			generateRodRecipe(CompatRegistry.DIAMOND_GEORE_DOWSING_ROD, Items.DIAMOND, recipeConsumer);
-			generateRodRecipe(CompatRegistry.EMERALD_GEORE_DOWSING_ROD, Items.EMERALD, recipeConsumer);
-			generateRodRecipe(CompatRegistry.GOLD_GEORE_DOWSING_ROD, Items.GOLD_INGOT, recipeConsumer);
-			generateRodRecipe(CompatRegistry.IRON_GEORE_DOWSING_ROD, Items.IRON_INGOT, recipeConsumer);
-			generateRodRecipe(CompatRegistry.LAPIS_GEORE_DOWSING_ROD, Items.LAPIS_LAZULI, recipeConsumer);
-			generateRodRecipe(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD, Items.QUARTZ, recipeConsumer);
-			generateRodRecipe(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD, Items.REDSTONE, recipeConsumer);
+		protected void buildRecipes(RecipeOutput recipeOutput) {
+			generateRodRecipe(CompatRegistry.COAL_GEORE_DOWSING_ROD, Items.COAL, recipeOutput);
+			generateRodRecipe(CompatRegistry.COPPER_GEORE_DOWSING_ROD, Items.COPPER_INGOT, recipeOutput);
+			generateRodRecipe(CompatRegistry.DIAMOND_GEORE_DOWSING_ROD, Items.DIAMOND, recipeOutput);
+			generateRodRecipe(CompatRegistry.EMERALD_GEORE_DOWSING_ROD, Items.EMERALD, recipeOutput);
+			generateRodRecipe(CompatRegistry.GOLD_GEORE_DOWSING_ROD, Items.GOLD_INGOT, recipeOutput);
+			generateRodRecipe(CompatRegistry.IRON_GEORE_DOWSING_ROD, Items.IRON_INGOT, recipeOutput);
+			generateRodRecipe(CompatRegistry.LAPIS_GEORE_DOWSING_ROD, Items.LAPIS_LAZULI, recipeOutput);
+			generateRodRecipe(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD, Items.QUARTZ, recipeOutput);
+			generateRodRecipe(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD, Items.REDSTONE, recipeOutput);
 
 			//Mod compat
 			String gemsID = "gemsandcrystals";
-			Item rubyItem = getModItem(new ResourceLocation(gemsID, "ruby"));
+			Item rubyItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "ruby"));
 			if (rubyItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.RUBY_GEORE_DOWSING_ROD, rubyItem, gemsID, recipeConsumer);
+				generateOptionalRodRecipe(CompatRegistry.RUBY_GEORE_DOWSING_ROD, rubyItem, gemsID, recipeOutput);
 			}
 
-			Item sapphireItem = getModItem(new ResourceLocation(gemsID, "sapphire"));
+			Item sapphireItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "sapphire"));
 			if (sapphireItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, sapphireItem, gemsID, recipeConsumer);
+				generateOptionalRodRecipe(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, sapphireItem, gemsID, recipeOutput);
 			}
 
-			Item topazItem = getModItem(new ResourceLocation(gemsID, "topaz"));
+			Item topazItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "topaz"));
 			if (topazItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, topazItem, gemsID, recipeConsumer);
+				generateOptionalRodRecipe(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, topazItem, gemsID, recipeOutput);
 			}
 		}
 
-		private void generateRodRecipe(RegistryObject<Item> rod, ItemLike itemLike, Consumer<FinishedRecipe> consumer) {
+		private void generateRodRecipe(DeferredHolder<Item, ? extends Item> rod, ItemLike itemLike, RecipeOutput output) {
 			ShapedRecipeBuilder.shaped(RecipeCategory.MISC, rod.get())
 					.pattern(" O ")
 					.pattern("ORO")
@@ -221,31 +226,30 @@ public class GNDatagen {
 					.define('O', itemLike)
 					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
 					.unlockedBy("has_ore", has(itemLike))
-					.save(consumer);
+					.save(output);
 		}
 
 		private Item getModItem(ResourceLocation itemLocation) {
-			for (Item item : ForgeRegistries.ITEMS) {
-				if (ForgeRegistries.ITEMS.getKey(item).equals(itemLocation)) {
+			for (Item item : BuiltInRegistries.ITEM.stream().toList()) {
+				if (BuiltInRegistries.ITEM.getKey(item).equals(itemLocation)) {
 					return item;
 				}
 			}
 			return null;
 		}
 
-		private void generateOptionalRodRecipe(RegistryObject<Item> rod, ItemLike itemLike, String modid, Consumer<FinishedRecipe> consumer) {
-			ConditionalRecipe.builder()
-					.addCondition(new ModLoadedCondition(modid))
-					.addRecipe(ShapedRecipeBuilder.shaped(RecipeCategory.MISC, rod.get())
-							.pattern(" O ")
-							.pattern("ORO")
-							.pattern(" O ")
-							.define('R', ItemsRegistry.DOWSING_ROD)
-							.define('O', itemLike)
-							.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
-							.unlockedBy("has_ore", has(itemLike))
-							::save)
-					.build(consumer, new ResourceLocation(GeOreNouveau.MOD_ID, rod.getId().getPath()));
+		private void generateOptionalRodRecipe(DeferredHolder<Item, ? extends Item> rod, ItemLike itemLike,
+		                                       String modid, RecipeOutput recipeOutput) {
+			RecipeOutput conditionalConsumer = recipeOutput.withConditions(new ModLoadedCondition(modid));
+			ShapedRecipeBuilder.shaped(RecipeCategory.MISC, rod.get())
+					.pattern(" O ")
+					.pattern("ORO")
+					.pattern(" O ")
+					.define('R', ItemsRegistry.DOWSING_ROD)
+					.define('O', itemLike)
+					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
+					.unlockedBy("has_ore", has(itemLike))
+					.save(conditionalConsumer, ResourceLocation.fromNamespaceAndPath(GeOreNouveau.MOD_ID, rod.getId().getPath()));
 		}
 	}
 }

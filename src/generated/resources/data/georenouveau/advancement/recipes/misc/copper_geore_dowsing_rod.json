@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "ars_nouveau:dowsing_rod"
-            ]
+            "items": "ars_nouveau:dowsing_rod"
           }
         ]
       },
@@ -17,9 +15,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:redstone"
-            ]
+            "items": "minecraft:copper_ingot"
           }
         ]
       },
@@ -27,22 +23,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "georenouveau:redstone_geore_dowsing_rod"
+        "recipe": "georenouveau:copper_geore_dowsing_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_dowsing_rod",
-      "has_ore",
-      "has_the_recipe"
+      "has_ore"
     ]
   ],
   "rewards": {
     "recipes": [
-      "georenouveau:redstone_geore_dowsing_rod"
+      "georenouveau:copper_geore_dowsing_rod"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

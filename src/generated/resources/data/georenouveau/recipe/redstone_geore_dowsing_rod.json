@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "O": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:redstone"
     },
     "R": {
       "item": "ars_nouveau:dowsing_rod"
@@ -15,7 +15,7 @@
     " O "
   ],
   "result": {
-    "item": "georenouveau:iron_geore_dowsing_rod"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "georenouveau:redstone_geore_dowsing_rod"
+  }
 }

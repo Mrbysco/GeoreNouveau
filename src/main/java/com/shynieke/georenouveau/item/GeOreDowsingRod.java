@@ -34,26 +34,26 @@ public class GeOreDowsingRod extends ModItem {
 
 
 	@Override
-	public InteractionResult useOn(UseOnContext pContext) {
-		if (pContext.getLevel() instanceof ServerLevel && pContext.getLevel().getBlockEntity(pContext.getClickedPos()) instanceof IPedestalMachine ipm) {
-			ipm.lightPedestal(pContext.getLevel());
+	public InteractionResult useOn(UseOnContext context) {
+		if (context.getLevel() instanceof ServerLevel && context.getLevel().getBlockEntity(context.getClickedPos()) instanceof IPedestalMachine ipm) {
+			ipm.lightPedestal(context.getLevel());
 			return InteractionResult.SUCCESS;
 		}
-		return super.useOn(pContext);
+		return super.useOn(context);
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-		ItemStack heldStack = pPlayer.getItemInHand(pUsedHand);
-		heldStack.setDamageValue(pPlayer.getItemInHand(pUsedHand).getDamageValue() + 1);
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+		ItemStack heldStack = player.getItemInHand(hand);
+		heldStack.setDamageValue(player.getItemInHand(hand).getDamageValue() + 1);
 		if (heldStack.getDamageValue() >= getMaxDamage(heldStack))
 			heldStack.shrink(1);
-		if (!pLevel.isClientSide) {
-			pPlayer.addEffect(new MobEffectInstance(ModPotions.MAGIC_FIND_EFFECT.get(), 60 * 20));
+		if (!level.isClientSide) {
+			player.addEffect(new MobEffectInstance(level.holderOrThrow(ModPotions.MAGIC_FIND_EFFECT.getKey()), 60 * 20));
 			SingleBlockScryer singleBlockScryer = new SingleBlockScryer(linkedGeOre.getBudding());
-			RitualScrying.grantScrying((ServerPlayer) pPlayer, 60 * 20, singleBlockScryer);
+			RitualScrying.grantScrying((ServerPlayer) player, 60 * 20, singleBlockScryer);
 
 		}
-		return super.use(pLevel, pPlayer, pUsedHand);
+		return super.use(level, player, hand);
 	}
 }

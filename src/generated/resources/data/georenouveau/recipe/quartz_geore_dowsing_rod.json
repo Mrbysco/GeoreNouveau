@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "O": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:quartz"
     },
     "R": {
       "item": "ars_nouveau:dowsing_rod"
@@ -15,7 +15,7 @@
     " O "
   ],
   "result": {
-    "item": "georenouveau:redstone_geore_dowsing_rod"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "georenouveau:quartz_geore_dowsing_rod"
+  }
 }

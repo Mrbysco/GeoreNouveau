@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "O": {
-      "item": "minecraft:lapis_lazuli"
+      "item": "minecraft:copper_ingot"
     },
     "R": {
       "item": "ars_nouveau:dowsing_rod"
@@ -15,7 +15,7 @@
     " O "
   ],
   "result": {
-    "item": "georenouveau:lapis_geore_dowsing_rod"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "georenouveau:copper_geore_dowsing_rod"
+  }
 }
