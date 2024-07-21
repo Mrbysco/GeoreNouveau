@@ -1,2 +1,1 @@
-* Add Zinc Charm and Dowsing Rod
-* Fix Dowsing Rod Recipes
+* Initial update to 1.21 (NeoForge)
