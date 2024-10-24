@@ -1,1 +1,1 @@
-* Initial update to 1.21 (NeoForge)
+* Update Ars Nouveau support (Requires Ars Nouveau **5.2.1** or newer)
