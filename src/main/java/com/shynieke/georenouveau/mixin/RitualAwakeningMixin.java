@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,28 +25,30 @@ import java.util.List;
 public class RitualAwakeningMixin {
 
 	@Shadow(remap = false)
-	private BlockPos foundPos;
+	BlockPos foundPos;
 
 	@Shadow(remap = false)
-	private EntityType<? extends LivingEntity> entity;
-	private LinkedGeOre linkedGeOre;
+	EntityType<? extends LivingEntity> entity;
+	
+	@Unique
+	private LinkedGeOre georenouveau_linkedGeOre;
 
 	@Inject(method = "findTargets(Lnet/minecraft/world/level/Level;)V",
 			locals = LocalCapture.NO_CAPTURE, at = @At(
 			value = "HEAD"), cancellable = true, remap = false)
-	private void georenouveau_findTargets(Level world, CallbackInfo ci) {
+	private void georenouveau_findTargets(Level level, CallbackInfo ci) {
 		RitualAwakening ritual = (RitualAwakening) (Object) this;
 
-		linkedGeOre = LinkedGeOre.DEFAULT;
+		georenouveau_linkedGeOre = LinkedGeOre.DEFAULT;
 		for (BlockPos p : BlockPos.withinManhattan(ritual.getPos(), 3, 1, 3)) {
-			List<LinkedGeOre> linkedGeOres = Arrays.stream(LginkedGeOre.values()).filter(geore -> world.getBlockState(p).is(geore.getBudding())).toList();
+			List<LinkedGeOre> linkedGeOres = Arrays.stream(LinkedGeOre.values()).filter(geore -> level.getBlockState(p).is(geore.getBudding())).toList();
 			if (!linkedGeOres.isEmpty()) {
-				LinkedGeOre linked = linkedGeOres.get(0);
-				if (world.getBlockState(p).is(linked.getBudding())) {
-					world.setBlock(p, Blocks.AIR.defaultBlockState(), 3);
+				LinkedGeOre linked = linkedGeOres.getFirst();
+				if (level.getBlockState(p).is(linked.getBudding())) {
+					level.setBlock(p, Blocks.AIR.defaultBlockState(), 3);
 					entity = CompatRegistry.GEORE_GOLEM.get();
 					foundPos = p;
-					linkedGeOre = linked;
+					georenouveau_linkedGeOre = linked;
 					ci.cancel();
 					break;
 				}
@@ -61,12 +64,12 @@ public class RitualAwakeningMixin {
 					ordinal = 0),
 			remap = false, cancellable = true)
 	private void georenouveau_tick(CallbackInfo ci) {
-		if (linkedGeOre != LinkedGeOre.DEFAULT) {
+		if (georenouveau_linkedGeOre != LinkedGeOre.DEFAULT) {
 			RitualAwakening ritual = (RitualAwakening) (Object) this;
 			Level level = ritual.getWorld();
 			LivingEntity walker = entity.create(level);
 			if (walker instanceof GeOreGolem golem) {
-				golem.setLinkedGeOre(linkedGeOre);
+				golem.setLinkedGeOre(georenouveau_linkedGeOre);
 				golem.setPos(foundPos.getX() + 0.5, foundPos.getY(), foundPos.getZ() + 0.5);
 				level.addFreshEntity(golem);
 			}

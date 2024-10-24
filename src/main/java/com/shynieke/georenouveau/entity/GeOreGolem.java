@@ -4,6 +4,7 @@ import com.hollingsworth.arsnouveau.client.particle.ParticleUtil;
 import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.hollingsworth.arsnouveau.common.entity.goal.GoBackHomeGoal;
 import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.DepositAmethystGoal;
+import com.hollingsworth.arsnouveau.setup.registry.DataComponentRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.goal.GeOreConvertBuddingGoal;
 import com.shynieke.georenouveau.entity.goal.GeOreGrowClusterGoal;
@@ -49,11 +50,11 @@ public class GeOreGolem extends AmethystGolem {
 		this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-		this.goalSelector.addGoal(3, new GeOreConvertBuddingGoal(this, () -> convertCooldown <= 0 && getHome() != null && getHeldStack().isEmpty()));
-		this.goalSelector.addGoal(4, new GeOreGrowClusterGoal(this, () -> growCooldown <= 0 && getHome() != null && getHeldStack().isEmpty()));
-		this.goalSelector.addGoal(5, new GeOreHarvestClusterGoal(this, () -> harvestCooldown <= 0 && getHome() != null && !isImbueing() && getHeldStack().isEmpty()));
+		this.goalSelector.addGoal(3, new GeOreConvertBuddingGoal(this, () -> convertCooldown <= 0 && getHome() != null && getMainHandItem().isEmpty()));
+		this.goalSelector.addGoal(4, new GeOreGrowClusterGoal(this, () -> growCooldown <= 0 && getHome() != null && getMainHandItem().isEmpty()));
+		this.goalSelector.addGoal(5, new GeOreHarvestClusterGoal(this, () -> harvestCooldown <= 0 && getHome() != null && !isImbueing() && getMainHandItem().isEmpty()));
 		this.goalSelector.addGoal(2, new GeOrePickupAmethystGoal(this, () -> getHome() != null && pickupCooldown <= 0));
-		this.goalSelector.addGoal(2, new DepositAmethystGoal(this, () -> getHome() != null && !getHeldStack().isEmpty()));
+		this.goalSelector.addGoal(2, new DepositAmethystGoal(this, () -> getHome() != null && !getMainHandItem().isEmpty()));
 	}
 
 	@Override
@@ -80,9 +81,10 @@ public class GeOreGolem extends AmethystGolem {
 	public void die(DamageSource source) {
 		if (!this.level().isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
+			stack.set(DataComponentRegistry.PERSISTENT_FAMILIAR_DATA, createCharmData());
 			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
-			if (this.getHeldStack() != null)
-				this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), this.getHeldStack()));
+			if (this.getMainHandItem() != null)
+				this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), this.getMainHandItem()));
 		}
 
 		//Manually triggering LivingEntity's die so that it doesn't drop Bailey's Amethyst Golem Charm
@@ -105,7 +107,7 @@ public class GeOreGolem extends AmethystGolem {
 			this.dead = true;
 			this.getCombatTracker().recheckStatus();
 			if (this.level() instanceof ServerLevel serverLevel) {
-				if (entity == null || entity.killedEntity((ServerLevel) this.level(), this)) {
+				if (entity == null || entity.killedEntity(serverLevel, this)) {
 					this.gameEvent(GameEvent.ENTITY_DIE);
 					this.dropAllDeathLoot(serverLevel, source);
 					this.createWitherRose(livingentity);
@@ -125,8 +127,9 @@ public class GeOreGolem extends AmethystGolem {
 
 		if (!this.level().isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
+			stack.set(DataComponentRegistry.PERSISTENT_FAMILIAR_DATA, createCharmData());
 			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack.copy()));
-			stack = getHeldStack();
+			stack = getMainHandItem();
 			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
 			ParticleUtil.spawnPoof((ServerLevel) this.level(), blockPosition());
 			this.remove(RemovalReason.DISCARDED);

@@ -46,7 +46,7 @@ public class GeOreGolemRenderer extends GeoEntityRenderer<GeOreGolem> {
 			stack.pushPose();
 			RenderUtil.translateToPivotPoint(stack, bone);
 			stack.translate(0, -0.10, 0);
-			ItemStack itemstack = golem.getHeldStack();
+			ItemStack itemstack = golem.getMainHandItem();
 			Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemDisplayContext.GROUND, packedLight, OverlayTexture.NO_OVERLAY, stack, this.buffer, animatable.level(), (int) golem.getOnPos().asLong());
 			stack.popPose();
 			bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));

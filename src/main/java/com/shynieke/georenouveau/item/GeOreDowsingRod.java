@@ -52,7 +52,6 @@ public class GeOreDowsingRod extends ModItem {
 			player.addEffect(new MobEffectInstance(level.holderOrThrow(ModPotions.MAGIC_FIND_EFFECT.getKey()), 60 * 20));
 			SingleBlockScryer singleBlockScryer = new SingleBlockScryer(linkedGeOre.getBudding());
 			RitualScrying.grantScrying((ServerPlayer) player, 60 * 20, singleBlockScryer);
-
 		}
 		return super.use(level, player, hand);
 	}

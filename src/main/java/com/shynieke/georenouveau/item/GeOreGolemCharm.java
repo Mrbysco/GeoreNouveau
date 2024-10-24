@@ -2,6 +2,8 @@ package com.shynieke.georenouveau.item;
 
 import com.hollingsworth.arsnouveau.api.item.AbstractSummonCharm;
 import com.hollingsworth.arsnouveau.common.block.tile.SummoningTile;
+import com.hollingsworth.arsnouveau.common.items.data.PersistentFamiliarData;
+import com.hollingsworth.arsnouveau.setup.registry.DataComponentRegistry;
 import com.shynieke.georenouveau.entity.GeOreGolem;
 import com.shynieke.georenouveau.entity.LinkedGeOre;
 import com.shynieke.georenouveau.registry.CompatRegistry;
@@ -24,6 +26,7 @@ public class GeOreGolemCharm extends AbstractSummonCharm {
 	@Override
 	public InteractionResult useOnBlock(UseOnContext context, Level level, BlockPos pos) {
 		GeOreGolem golem = new GeOreGolem(CompatRegistry.GEORE_GOLEM.get(), level);
+		golem.fromCharmData(context.getItemInHand().getOrDefault(DataComponentRegistry.PERSISTENT_FAMILIAR_DATA, new PersistentFamiliarData()));
 		golem.setPos(pos.getX(), pos.above().getY(), pos.getZ());
 		golem.setLinkedGeOre(linkedGeOre);
 		level.addFreshEntity(golem);
