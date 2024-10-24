@@ -38,7 +38,7 @@ public class RitualAwakeningMixin {
 
 		linkedGeOre = LinkedGeOre.DEFAULT;
 		for (BlockPos p : BlockPos.withinManhattan(ritual.getPos(), 3, 1, 3)) {
-			List<LinkedGeOre> linkedGeOres = Arrays.stream(LinkedGeOre.values()).filter(geore -> world.getBlockState(p).is(geore.getBudding())).toList();
+			List<LinkedGeOre> linkedGeOres = Arrays.stream(LginkedGeOre.values()).filter(geore -> world.getBlockState(p).is(geore.getBudding())).toList();
 			if (!linkedGeOres.isEmpty()) {
 				LinkedGeOre linked = linkedGeOres.get(0);
 				if (world.getBlockState(p).is(linked.getBudding())) {

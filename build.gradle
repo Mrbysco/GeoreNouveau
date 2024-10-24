@@ -3,8 +3,8 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.154'
-    id 'net.darkhax.curseforgegradle' version '1.1.24'
+    id 'net.neoforged.gradle.userdev' version '7.0.165'
+    id 'net.darkhax.curseforgegradle' version '1.1.25'
     id 'com.modrinth.minotaur' version "2.+"
 }
 
@@ -107,9 +107,9 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "com.shynieke.geore:GeOre-${mc_version}:${geore_version}"
+    implementation "com.shynieke.geore:GeOre-1.21:${geore_version}"
     implementation "vazkii.patchouli:Patchouli:${patchouli_version}"
-    implementation "com.hollingsworth.ars_nouveau:ars_nouveau-1.21.0:${ars_version}"
+    implementation "com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}"
     implementation "software.bernie.geckolib:geckolib-neoforge-${mc_version}:${gecko_version}"
 
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
@@ -122,7 +122,7 @@ dependencies {
     runtimeOnly "com.illusivesoulworks.caelus:caelus-neoforge:${caelus_version}"
     compileOnly "com.illusivesoulworks.caelus:caelus-neoforge:${caelus_version}:api"
 
-    implementation 'com.github.glitchfiend:TerraBlender-neoforge:1.21-4.0.0.0'
+    implementation "com.github.glitchfiend:TerraBlender-neoforge:${mc_version}-4.1.0.3"
 //    implementation "curse.maven:gems-and-crystals-334162:4766843" //Gems and Crystals (For optional dowsing rod recipes)
 }
 
