@@ -1,1 +1,1 @@
-* Update Ars Nouveau support (Requires Ars Nouveau **5.2.1** or newer)
+* Update Ars Nouveau support (Requires Ars Nouveau **5.2.6** or newer)
