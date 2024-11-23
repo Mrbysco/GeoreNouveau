@@ -5,6 +5,7 @@ import com.shynieke.georenouveau.entity.GeOreGolem;
 import com.shynieke.georenouveau.entity.LinkedGeOre;
 import com.shynieke.georenouveau.registry.CompatRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
@@ -33,10 +34,10 @@ public class RitualAwakeningMixin {
 	@Unique
 	private LinkedGeOre georenouveau_linkedGeOre;
 
-	@Inject(method = "findTargets(Lnet/minecraft/world/level/Level;)V",
+	@Inject(method = "findTargets(Lnet/minecraft/server/level/ServerLevel;)V",
 			locals = LocalCapture.NO_CAPTURE, at = @At(
 			value = "HEAD"), cancellable = true, remap = false)
-	private void georenouveau_findTargets(Level level, CallbackInfo ci) {
+	private void georenouveau_findTargets(ServerLevel level, CallbackInfo ci) {
 		RitualAwakening ritual = (RitualAwakening) (Object) this;
 
 		georenouveau_linkedGeOre = LinkedGeOre.DEFAULT;
