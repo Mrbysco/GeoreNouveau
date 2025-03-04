@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.hollingsworth.arsnouveau.common.entity.goal.GoBackHomeGoal;
 import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.DepositAmethystGoal;
 import com.hollingsworth.arsnouveau.setup.registry.DataComponentRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.goal.GeOreConvertBuddingGoal;
 import com.shynieke.georenouveau.entity.goal.GeOreGrowClusterGoal;
@@ -76,47 +77,14 @@ public class GeOreGolem extends AmethystGolem {
 		}
 	}
 
-
 	@Override
-	public void die(DamageSource source) {
-		if (!this.level().isClientSide) {
+	protected void dropCustomDeathLoot(ServerLevel level, DamageSource damageSource, boolean recentlyHit) {
+		if (!level.isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
 			stack.set(DataComponentRegistry.PERSISTENT_FAMILIAR_DATA, createCharmData());
 			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
 			if (this.getMainHandItem() != null)
 				this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), this.getMainHandItem()));
-		}
-
-		//Manually triggering LivingEntity's die so that it doesn't drop Bailey's Amethyst Golem Charm
-		if (CommonHooks.onLivingDeath(this, source)) return;
-		if (!this.isRemoved() && !this.dead) {
-			Entity entity = source.getEntity();
-			LivingEntity livingentity = this.getKillCredit();
-			if (this.deathScore >= 0 && livingentity != null) {
-				livingentity.awardKillScore(this, this.deathScore, source);
-			}
-
-			if (this.isSleeping()) {
-				this.stopSleeping();
-			}
-
-			if (!this.level().isClientSide && this.hasCustomName()) {
-				GeOreNouveau.LOGGER.info("Named entity {} died: {}", this, this.getCombatTracker().getDeathMessage().getString());
-			}
-
-			this.dead = true;
-			this.getCombatTracker().recheckStatus();
-			if (this.level() instanceof ServerLevel serverLevel) {
-				if (entity == null || entity.killedEntity(serverLevel, this)) {
-					this.gameEvent(GameEvent.ENTITY_DIE);
-					this.dropAllDeathLoot(serverLevel, source);
-					this.createWitherRose(livingentity);
-				}
-
-				this.level().broadcastEntityEvent(this, (byte) 3);
-			}
-
-			this.setPose(Pose.DYING);
 		}
 	}
 
