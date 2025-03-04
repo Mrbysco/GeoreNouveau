@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.common.entity.AmethystGolem;
 import com.hollingsworth.arsnouveau.common.entity.goal.GoBackHomeGoal;
 import com.hollingsworth.arsnouveau.common.entity.goal.amethyst_golem.DepositAmethystGoal;
 import com.hollingsworth.arsnouveau.setup.registry.DataComponentRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.entity.goal.GeOreConvertBuddingGoal;
 import com.shynieke.georenouveau.entity.goal.GeOreGrowClusterGoal;
@@ -76,17 +77,19 @@ public class GeOreGolem extends AmethystGolem {
 		}
 	}
 
-
 	@Override
-	public void die(DamageSource source) {
-		if (!this.level().isClientSide) {
+	protected void dropCustomDeathLoot(ServerLevel level, DamageSource damageSource, boolean recentlyHit) {
+		if (!level.isClientSide) {
 			ItemStack stack = new ItemStack(getLinkedGeOre().getCharm());
 			stack.set(DataComponentRegistry.PERSISTENT_FAMILIAR_DATA, createCharmData());
 			this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), stack));
 			if (this.getMainHandItem() != null)
 				this.level().addFreshEntity(new ItemEntity(this.level(), getX(), getY(), getZ(), this.getMainHandItem()));
 		}
+	}
 
+	@Override
+	public void die(DamageSource source) {
 		//Manually triggering LivingEntity's die so that it doesn't drop Bailey's Amethyst Golem Charm
 		if (CommonHooks.onLivingDeath(this, source)) return;
 		if (!this.isRemoved() && !this.dead) {
