@@ -1,1 +1,1 @@
-* Update Ars Nouveau support (Requires Ars Nouveau **5.2.6** or newer)
+* Update Ars Nouveau support (Thanks to [Vonr](https://github.com/Vonr)) (Requires Ars Nouveau **5.5.1** or newer)
