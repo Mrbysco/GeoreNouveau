@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "georenouveau:item/lead_golem_charm"
+  }
+}

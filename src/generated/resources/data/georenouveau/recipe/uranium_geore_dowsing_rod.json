@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/uranium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "tag": "c:ingots/uranium"
+    },
+    "R": {
+      "item": "ars_nouveau:dowsing_rod"
+    }
+  },
+  "pattern": [
+    " O ",
+    "ORO",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "georenouveau:uranium_geore_dowsing_rod"
+  }
+}

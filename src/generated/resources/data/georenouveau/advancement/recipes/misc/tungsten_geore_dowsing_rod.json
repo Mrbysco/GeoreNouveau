@@ -1,0 +1,52 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tungsten"
+      }
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dowsing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ars_nouveau:dowsing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ingots/tungsten"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "georenouveau:tungsten_geore_dowsing_rod"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dowsing_rod",
+      "has_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "georenouveau:tungsten_geore_dowsing_rod"
+    ]
+  }
+}

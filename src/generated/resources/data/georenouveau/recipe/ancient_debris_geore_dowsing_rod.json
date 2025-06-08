@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:ancient_debris"
+    },
+    "R": {
+      "item": "ars_nouveau:dowsing_rod"
+    }
+  },
+  "pattern": [
+    " O ",
+    "ORO",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "georenouveau:ancient_debris_geore_dowsing_rod"
+  }
+}

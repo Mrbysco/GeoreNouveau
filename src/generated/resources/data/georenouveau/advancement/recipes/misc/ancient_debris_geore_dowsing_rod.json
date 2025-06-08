@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dowsing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ars_nouveau:dowsing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ancient_debris"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "georenouveau:ancient_debris_geore_dowsing_rod"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dowsing_rod",
+      "has_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "georenouveau:ancient_debris_geore_dowsing_rod"
+    ]
+  }
+}

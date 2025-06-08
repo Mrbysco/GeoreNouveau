@@ -1,6 +1,7 @@
 package com.shynieke.georenouveau.data;
 
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.item.GeOreDowsingRod;
 import com.shynieke.georenouveau.item.GeOreGolemCharm;
@@ -17,6 +18,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
@@ -30,6 +32,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
+import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -67,6 +71,7 @@ public class GNDatagen {
 		@Override
 		protected void addTranslations() {
 			addEntityType(CompatRegistry.GEORE_GOLEM, "GeOre Golem");
+
 			generateCharmLang(CompatRegistry.COAL_GEORE_GOLEM_CHARM, "Coal");
 			generateCharmLang(CompatRegistry.COPPER_GEORE_GOLEM_CHARM, "Copper");
 			generateCharmLang(CompatRegistry.DIAMOND_GEORE_GOLEM_CHARM, "Diamond");
@@ -76,10 +81,23 @@ public class GNDatagen {
 			generateCharmLang(CompatRegistry.LAPIS_GEORE_GOLEM_CHARM, "Lapis");
 			generateCharmLang(CompatRegistry.QUARTZ_GEORE_GOLEM_CHARM, "Quartz");
 			generateCharmLang(CompatRegistry.REDSTONE_GEORE_GOLEM_CHARM, "Redstone");
+			generateCharmLang(CompatRegistry.ANCIENT_DEBRIS_GEORE_GOLEM_CHARM, "Ancient Debris");
 			generateCharmLang(CompatRegistry.RUBY_GEORE_GOLEM_CHARM, "Ruby");
 			generateCharmLang(CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM, "Sapphire");
 			generateCharmLang(CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM, "Topaz");
 			generateCharmLang(CompatRegistry.ZINC_GEORE_GOLEM_CHARM, "Zinc");
+			generateCharmLang(CompatRegistry.URANINITE_GEORE_GOLEM_CHARM, "Uraninite");
+			generateCharmLang(CompatRegistry.BLACK_QUARTZ_GEORE_GOLEM_CHARM, "Black Quartz");
+			generateCharmLang(CompatRegistry.MONAZITE_GEORE_GOLEM_CHARM, "Monazite");
+			generateCharmLang(CompatRegistry.ALUMINUM_GEORE_GOLEM_CHARM, "Aluminum");
+			generateCharmLang(CompatRegistry.LEAD_GEORE_GOLEM_CHARM, "Lead");
+			generateCharmLang(CompatRegistry.NICKEL_GEORE_GOLEM_CHARM, "Nickel");
+			generateCharmLang(CompatRegistry.OSMIUM_GEORE_GOLEM_CHARM, "Osmium");
+			generateCharmLang(CompatRegistry.PLATINUM_GEORE_GOLEM_CHARM, "Platinum");
+			generateCharmLang(CompatRegistry.SILVER_GEORE_GOLEM_CHARM, "Silver");
+			generateCharmLang(CompatRegistry.TIN_GEORE_GOLEM_CHARM, "Tin");
+			generateCharmLang(CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM, "Tungsten");
+			generateCharmLang(CompatRegistry.URANIUM_GEORE_GOLEM_CHARM, "Uranium");
 
 			generateDowsingLang(CompatRegistry.COAL_GEORE_DOWSING_ROD, "Coal");
 			generateDowsingLang(CompatRegistry.COPPER_GEORE_DOWSING_ROD, "Copper");
@@ -90,10 +108,23 @@ public class GNDatagen {
 			generateDowsingLang(CompatRegistry.LAPIS_GEORE_DOWSING_ROD, "Lapis");
 			generateDowsingLang(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD, "Quartz");
 			generateDowsingLang(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD, "Redstone");
+			generateDowsingLang(CompatRegistry.ANCIENT_DEBRIS_GEORE_DOWSING_ROD, "Ancient Debris");
 			generateDowsingLang(CompatRegistry.RUBY_GEORE_DOWSING_ROD, "Ruby");
 			generateDowsingLang(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, "Sapphire");
 			generateDowsingLang(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, "Topaz");
 			generateDowsingLang(CompatRegistry.ZINC_GEORE_DOWSING_ROD, "Zinc");
+			generateDowsingLang(CompatRegistry.URANINITE_GEORE_DOWSING_ROD, "Uraninite");
+			generateDowsingLang(CompatRegistry.BLACK_QUARTZ_GEORE_DOWSING_ROD, "Black Quartz");
+			generateDowsingLang(CompatRegistry.MONAZITE_GEORE_DOWSING_ROD, "Monazite");
+			generateDowsingLang(CompatRegistry.ALUMINUM_GEORE_DOWSING_ROD, "Aluminum");
+			generateDowsingLang(CompatRegistry.LEAD_GEORE_DOWSING_ROD, "Lead");
+			generateDowsingLang(CompatRegistry.NICKEL_GEORE_DOWSING_ROD, "Nickel");
+			generateDowsingLang(CompatRegistry.OSMIUM_GEORE_DOWSING_ROD, "Osmium");
+			generateDowsingLang(CompatRegistry.PLATINUM_GEORE_DOWSING_ROD, "Platinum");
+			generateDowsingLang(CompatRegistry.SILVER_GEORE_DOWSING_ROD, "Silver");
+			generateDowsingLang(CompatRegistry.TIN_GEORE_DOWSING_ROD, "Tin");
+			generateDowsingLang(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD, "Tungsten");
+			generateDowsingLang(CompatRegistry.URANIUM_GEORE_DOWSING_ROD, "Uranium");
 		}
 
 		protected void generateCharmLang(DeferredItem<GeOreGolemCharm> registryObject, String name) {
@@ -123,10 +154,23 @@ public class GNDatagen {
 			generateCharm(CompatRegistry.LAPIS_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.QUARTZ_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.REDSTONE_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.ANCIENT_DEBRIS_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.RUBY_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.ZINC_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.URANINITE_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.BLACK_QUARTZ_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.MONAZITE_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.ALUMINUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.LEAD_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.NICKEL_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.OSMIUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.PLATINUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.SILVER_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.TIN_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.URANIUM_GEORE_GOLEM_CHARM);
 
 			generateRod(CompatRegistry.COAL_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.COPPER_GEORE_DOWSING_ROD);
@@ -137,15 +181,29 @@ public class GNDatagen {
 			generateRod(CompatRegistry.LAPIS_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.ANCIENT_DEBRIS_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.RUBY_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.ZINC_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.URANINITE_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.BLACK_QUARTZ_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.MONAZITE_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.ALUMINUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.LEAD_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.NICKEL_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.OSMIUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.PLATINUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.SILVER_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.TIN_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.URANIUM_GEORE_DOWSING_ROD);
 		}
 
 		protected void generateCharm(DeferredItem<GeOreGolemCharm> deferredItem) {
-			singleTexture(deferredItem.getId().getPath(), ResourceLocation.withDefaultNamespace("item/generated"),
-					"layer0", modLoc("item/" + deferredItem.getId().getPath()));
+			String path = deferredItem.getId().getPath();
+			singleTexture(path, ResourceLocation.withDefaultNamespace("item/generated"),
+					"layer0", modLoc("item/" + path.replace("_geore_golem_", "_golem_")));
 		}
 
 		protected void generateRod(DeferredItem<GeOreDowsingRod> deferredItem) {
@@ -188,33 +246,38 @@ public class GNDatagen {
 		}
 
 		@Override
-		protected void buildRecipes(RecipeOutput recipeOutput) {
-			generateRodRecipe(CompatRegistry.COAL_GEORE_DOWSING_ROD, Items.COAL, recipeOutput);
-			generateRodRecipe(CompatRegistry.COPPER_GEORE_DOWSING_ROD, Items.COPPER_INGOT, recipeOutput);
-			generateRodRecipe(CompatRegistry.DIAMOND_GEORE_DOWSING_ROD, Items.DIAMOND, recipeOutput);
-			generateRodRecipe(CompatRegistry.EMERALD_GEORE_DOWSING_ROD, Items.EMERALD, recipeOutput);
-			generateRodRecipe(CompatRegistry.GOLD_GEORE_DOWSING_ROD, Items.GOLD_INGOT, recipeOutput);
-			generateRodRecipe(CompatRegistry.IRON_GEORE_DOWSING_ROD, Items.IRON_INGOT, recipeOutput);
-			generateRodRecipe(CompatRegistry.LAPIS_GEORE_DOWSING_ROD, Items.LAPIS_LAZULI, recipeOutput);
-			generateRodRecipe(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD, Items.QUARTZ, recipeOutput);
-			generateRodRecipe(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD, Items.REDSTONE, recipeOutput);
+		protected void buildRecipes(RecipeOutput output) {
+			generateRodRecipe(CompatRegistry.COAL_GEORE_DOWSING_ROD, Items.COAL, output);
+			generateRodRecipe(CompatRegistry.COPPER_GEORE_DOWSING_ROD, Items.COPPER_INGOT, output);
+			generateRodRecipe(CompatRegistry.DIAMOND_GEORE_DOWSING_ROD, Items.DIAMOND, output);
+			generateRodRecipe(CompatRegistry.EMERALD_GEORE_DOWSING_ROD, Items.EMERALD, output);
+			generateRodRecipe(CompatRegistry.GOLD_GEORE_DOWSING_ROD, Items.GOLD_INGOT, output);
+			generateRodRecipe(CompatRegistry.IRON_GEORE_DOWSING_ROD, Items.IRON_INGOT, output);
+			generateRodRecipe(CompatRegistry.LAPIS_GEORE_DOWSING_ROD, Items.LAPIS_LAZULI, output);
+			generateRodRecipe(CompatRegistry.QUARTZ_GEORE_DOWSING_ROD, Items.QUARTZ, output);
+			generateRodRecipe(CompatRegistry.REDSTONE_GEORE_DOWSING_ROD, Items.REDSTONE, output);
+			generateRodRecipe(CompatRegistry.ANCIENT_DEBRIS_GEORE_DOWSING_ROD, Items.ANCIENT_DEBRIS, output);
+			
+			generateRodRecipe(CompatRegistry.RUBY_GEORE_DOWSING_ROD, createTag("gems/ruby"), output);
+			generateRodRecipe(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, createTag("gems/sapphire"), output);
+			generateRodRecipe(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, createTag("gems/topaz"), output);
+			generateRodRecipe(CompatRegistry.ZINC_GEORE_DOWSING_ROD, createTag("ingots/zinc"), output);
+			generateRodRecipe(CompatRegistry.URANINITE_GEORE_DOWSING_ROD, createTag("raw_materials/uraninite"), output);
+			generateRodRecipe(CompatRegistry.BLACK_QUARTZ_GEORE_DOWSING_ROD, createTag("gems/black_quartz"), output);
+			generateRodRecipe(CompatRegistry.MONAZITE_GEORE_DOWSING_ROD, createTag("dusts/monazite"), output);
+			generateRodRecipe(CompatRegistry.ALUMINUM_GEORE_DOWSING_ROD, createTag("ingots/aluminum"), output);
+			generateRodRecipe(CompatRegistry.LEAD_GEORE_DOWSING_ROD, createTag("ingots/lead"), output);
+			generateRodRecipe(CompatRegistry.NICKEL_GEORE_DOWSING_ROD, createTag("ingots/nickel"), output);
+			generateRodRecipe(CompatRegistry.OSMIUM_GEORE_DOWSING_ROD, createTag("ingots/osmium"), output);
+			generateRodRecipe(CompatRegistry.PLATINUM_GEORE_DOWSING_ROD, createTag("ingots/platinum"), output);
+			generateRodRecipe(CompatRegistry.SILVER_GEORE_DOWSING_ROD, createTag("ingots/silver"), output);
+			generateRodRecipe(CompatRegistry.TIN_GEORE_DOWSING_ROD, createTag("ingots/tin"), output);
+			generateRodRecipe(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD, createTag("ingots/tungsten"), output);
+			generateRodRecipe(CompatRegistry.URANIUM_GEORE_DOWSING_ROD, createTag("ingots/uranium"), output);
+		}
 
-			//Mod compat
-			String gemsID = "gemsandcrystals";
-			Item rubyItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "ruby"));
-			if (rubyItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.RUBY_GEORE_DOWSING_ROD, rubyItem, gemsID, recipeOutput);
-			}
-
-			Item sapphireItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "sapphire"));
-			if (sapphireItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD, sapphireItem, gemsID, recipeOutput);
-			}
-
-			Item topazItem = getModItem(ResourceLocation.fromNamespaceAndPath(gemsID, "topaz"));
-			if (topazItem != null) {
-				generateOptionalRodRecipe(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD, topazItem, gemsID, recipeOutput);
-			}
+		private TagKey<Item> createTag(String tagName) {
+			return TagKey.create(BuiltInRegistries.ITEM.key(), ResourceLocation.fromNamespaceAndPath("c", tagName));
 		}
 
 		private void generateRodRecipe(DeferredHolder<Item, ? extends Item> rod, ItemLike itemLike, RecipeOutput output) {
@@ -227,6 +290,19 @@ public class GNDatagen {
 					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
 					.unlockedBy("has_ore", has(itemLike))
 					.save(output);
+		}
+
+		private void generateRodRecipe(DeferredHolder<Item, ? extends Item> rod, TagKey<Item> itemTag, RecipeOutput output) {
+			RecipeOutput tagOutput = output.withConditions(new NotCondition(new TagEmptyCondition(itemTag.location())));
+			ShapedRecipeBuilder.shaped(RecipeCategory.MISC, rod.get())
+					.pattern(" O ")
+					.pattern("ORO")
+					.pattern(" O ")
+					.define('R', ItemsRegistry.DOWSING_ROD)
+					.define('O', itemTag)
+					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
+					.unlockedBy("has_ore", has(itemTag))
+					.save(tagOutput);
 		}
 
 		private Item getModItem(ResourceLocation itemLocation) {
