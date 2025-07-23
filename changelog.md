@@ -1,2 +1,2 @@
-* Update GeOre support and add all the new charms (Requires GeOre **6.0.8** or newer)
-* Minimum required Ars Nouveau version is now **5.8.3**
+* Fix Ruby, Sapphire and Topaz Golems showing an error texture when rendered (Temporary textures)
+* Fix the Charm and Dowsing Rod tooltips for ores with multiple words in their names (Ancient Debris, Black Quartz)
