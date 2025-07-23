@@ -129,12 +129,12 @@ public class GNDatagen {
 
 		protected void generateCharmLang(DeferredItem<GeOreGolemCharm> registryObject, String name) {
 			addItem(registryObject, name + " GeOre Golem Charm");
-			add("tooltip.geore_nouveau." + name.toLowerCase(Locale.ROOT) + "_charm", "Obtained by performing the Ritual of Awakening near Budding " + name + " Geore");
+			add("tooltip.geore_nouveau." + name.replaceAll(" ", "_").toLowerCase(Locale.ROOT) + "_charm", "Obtained by performing the Ritual of Awakening near Budding " + name + " Geore");
 		}
 
 		protected void generateDowsingLang(DeferredItem<GeOreDowsingRod> registryObject, String name) {
 			addItem(registryObject, name + " GeOre Dowsing Rod");
-			add("tooltip.geore_nouveau." + name.toLowerCase(Locale.ROOT) + "_dowsing_rod", "Grants Magic Find and Scrying on use, causing magical creatures to glow and " + name + " Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.");
+			add("tooltip.geore_nouveau." + name.replaceAll(" ", "_").toLowerCase(Locale.ROOT) + "_dowsing_rod", "Grants Magic Find and Scrying on use, causing magical creatures to glow and " + name + " Geore to be revealed through blocks. Can be used on Imbuement Chamber and Enchanting Apparatus to highlight linked pedestals.");
 		}
 	}
 
