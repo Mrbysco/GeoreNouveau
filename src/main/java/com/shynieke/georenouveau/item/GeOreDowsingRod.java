@@ -4,7 +4,6 @@ import com.hollingsworth.arsnouveau.api.block.IPedestalMachine;
 import com.hollingsworth.arsnouveau.api.scrying.SingleBlockScryer;
 import com.hollingsworth.arsnouveau.common.items.ModItem;
 import com.hollingsworth.arsnouveau.common.ritual.RitualScrying;
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.ModPotions;
 import com.shynieke.georenouveau.entity.LinkedGeOre;
 import net.minecraft.network.chat.Component;
@@ -23,15 +22,10 @@ public class GeOreDowsingRod extends ModItem {
 	private final LinkedGeOre linkedGeOre;
 
 	public GeOreDowsingRod(Properties properties, LinkedGeOre linkedGeOre) {
-		super(properties);
+		super(properties.durability(4));
 		this.linkedGeOre = linkedGeOre;
 		withTooltip(Component.translatable("tooltip.geore_nouveau." + linkedGeOre.getName() + "_dowsing_rod"));
 	}
-
-	public GeOreDowsingRod(LinkedGeOre linkedGeOre) {
-		this(ItemsRegistry.defaultItemProperties().durability(4), linkedGeOre);
-	}
-
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {

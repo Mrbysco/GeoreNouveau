@@ -17,8 +17,8 @@ import net.minecraft.world.level.Level;
 public class GeOreGolemCharm extends AbstractSummonCharm {
 	private final LinkedGeOre linkedGeOre;
 
-	public GeOreGolemCharm(LinkedGeOre linkedGeOre) {
-		super(new Item.Properties());
+	public GeOreGolemCharm(Item.Properties properties, LinkedGeOre linkedGeOre) {
+		super(properties);
 		this.linkedGeOre = linkedGeOre;
 		withTooltip(Component.translatable("tooltip.geore_nouveau." + linkedGeOre.getName() + "_charm"));
 	}
