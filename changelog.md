@@ -1,2 +1,3 @@
-* Fix Ruby, Sapphire and Topaz Golems showing an error texture when rendered (Temporary textures)
-* Fix the Charm and Dowsing Rod tooltips for ores with multiple words in their names (Ancient Debris, Black Quartz)
+* Add JEI support to see GeOre Golem conversion blocks
+* Update GeOre support (Now requires 6.2.0+)
+* Add `pt_br` translations courtesy of PrincessStellar
