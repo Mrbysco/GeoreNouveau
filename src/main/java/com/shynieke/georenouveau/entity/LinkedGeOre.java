@@ -2,10 +2,12 @@ package com.shynieke.georenouveau.entity;
 
 import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+import com.shynieke.geore.registry.GeOreBlockReg;
 import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.registry.CompatRegistry;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.Optional;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
@@ -75,7 +78,13 @@ public enum LinkedGeOre implements StringRepresentable {
 	TUNGSTEN(25, "tungsten", () -> GeOreRegistry.TUNGSTEN_GEORE.getBlock().get(), () -> GeOreRegistry.TUNGSTEN_GEORE.getBudding().get(),
 			() -> GeOreRegistry.TUNGSTEN_GEORE.getCluster().get(), () -> GeOreRegistry.TUNGSTEN_GEORE.getShard().get(), CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM::get),
 	URANIUM(26, "uranium", () -> GeOreRegistry.URANIUM_GEORE.getBlock().get(), () -> GeOreRegistry.URANIUM_GEORE.getBudding().get(),
-			() -> GeOreRegistry.URANIUM_GEORE.getCluster().get(), () -> GeOreRegistry.URANIUM_GEORE.getShard().get(), CompatRegistry.URANIUM_GEORE_GOLEM_CHARM::get);
+			() -> GeOreRegistry.URANIUM_GEORE.getCluster().get(), () -> GeOreRegistry.URANIUM_GEORE.getShard().get(), CompatRegistry.URANIUM_GEORE_GOLEM_CHARM::get),
+	ALLTHEMODIUM(27, "allthemodium", getOptionalBlock(ResourceLocation.fromNamespaceAndPath("allthemodium", "allthemodium_block"), GeOreRegistry.ALLTHEMODIUM_GEORE), () -> GeOreRegistry.ALLTHEMODIUM_GEORE.getBudding().get(),
+			() -> GeOreRegistry.ALLTHEMODIUM_GEORE.getCluster().get(), () -> GeOreRegistry.ALLTHEMODIUM_GEORE.getShard().get(), CompatRegistry.ALLTHEMODIUM_GEORE_GOLEM_CHARM::get),
+	VIBRANIUM(28, "vibranium", getOptionalBlock(ResourceLocation.fromNamespaceAndPath("allthemodium", "vibranium_block"), GeOreRegistry.VIBRANIUM_GEORE), () -> GeOreRegistry.VIBRANIUM_GEORE.getBudding().get(),
+			() -> GeOreRegistry.VIBRANIUM_GEORE.getCluster().get(), () -> GeOreRegistry.VIBRANIUM_GEORE.getShard().get(), CompatRegistry.VIBRANIUM_GEORE_GOLEM_CHARM::get),
+	UNOBTAINIUM(29, "unobtainium", getOptionalBlock(ResourceLocation.fromNamespaceAndPath("allthemodium", "unobtainium_block"), GeOreRegistry.UNOBTAINIUM_GEORE), () -> GeOreRegistry.UNOBTAINIUM_GEORE.getBudding().get(),
+			() -> GeOreRegistry.UNOBTAINIUM_GEORE.getCluster().get(), () -> GeOreRegistry.UNOBTAINIUM_GEORE.getShard().get(), CompatRegistry.UNOBTAINIUM_GEORE_GOLEM_CHARM::get);
 
 	private static final IntFunction<LinkedGeOre> BY_ID = ByIdMap.continuous(LinkedGeOre::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
 	public static final StreamCodec<ByteBuf, LinkedGeOre> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, LinkedGeOre::getId);
@@ -138,5 +147,13 @@ public enum LinkedGeOre implements StringRepresentable {
 	@Override
 	public String getSerializedName() {
 		return this.name;
+	}
+
+	private static Supplier<Block> getOptionalBlock(ResourceLocation modId, GeOreBlockReg fallback) {
+		Optional<Block> optionalBlock = BuiltInRegistries.BLOCK.getOptional(modId);
+		if (optionalBlock.isPresent()) {
+			return optionalBlock::get;
+		}
+		return () -> fallback.getBlock().get();
 	}
 }

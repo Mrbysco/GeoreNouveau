@@ -1,7 +1,6 @@
 package com.shynieke.georenouveau.data;
 
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
-import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.GeOreNouveau;
 import com.shynieke.georenouveau.item.GeOreDowsingRod;
 import com.shynieke.georenouveau.item.GeOreGolemCharm;
@@ -31,7 +30,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -98,6 +96,9 @@ public class GNDatagen {
 			generateCharmLang(CompatRegistry.TIN_GEORE_GOLEM_CHARM, "Tin");
 			generateCharmLang(CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM, "Tungsten");
 			generateCharmLang(CompatRegistry.URANIUM_GEORE_GOLEM_CHARM, "Uranium");
+			generateCharmLang(CompatRegistry.ALLTHEMODIUM_GEORE_GOLEM_CHARM, "Allthemodium");
+			generateCharmLang(CompatRegistry.VIBRANIUM_GEORE_GOLEM_CHARM, "Vibranium");
+			generateCharmLang(CompatRegistry.UNOBTAINIUM_GEORE_GOLEM_CHARM, "Unobtainium");
 
 			generateDowsingLang(CompatRegistry.COAL_GEORE_DOWSING_ROD, "Coal");
 			generateDowsingLang(CompatRegistry.COPPER_GEORE_DOWSING_ROD, "Copper");
@@ -125,6 +126,11 @@ public class GNDatagen {
 			generateDowsingLang(CompatRegistry.TIN_GEORE_DOWSING_ROD, "Tin");
 			generateDowsingLang(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD, "Tungsten");
 			generateDowsingLang(CompatRegistry.URANIUM_GEORE_DOWSING_ROD, "Uranium");
+			generateDowsingLang(CompatRegistry.ALLTHEMODIUM_GEORE_DOWSING_ROD, "Allthemodium");
+			generateDowsingLang(CompatRegistry.VIBRANIUM_GEORE_DOWSING_ROD, "Vibranium");
+			generateDowsingLang(CompatRegistry.UNOBTAINIUM_GEORE_DOWSING_ROD, "Unobtainium");
+
+			add("georenouveau.gui.jei.category.conversion", "GeOre Golem Conversion");
 		}
 
 		protected void generateCharmLang(DeferredItem<GeOreGolemCharm> registryObject, String name) {
@@ -171,6 +177,9 @@ public class GNDatagen {
 			generateCharm(CompatRegistry.TIN_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM);
 			generateCharm(CompatRegistry.URANIUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.ALLTHEMODIUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.VIBRANIUM_GEORE_GOLEM_CHARM);
+			generateCharm(CompatRegistry.UNOBTAINIUM_GEORE_GOLEM_CHARM);
 
 			generateRod(CompatRegistry.COAL_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.COPPER_GEORE_DOWSING_ROD);
@@ -198,6 +207,9 @@ public class GNDatagen {
 			generateRod(CompatRegistry.TIN_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD);
 			generateRod(CompatRegistry.URANIUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.ALLTHEMODIUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.VIBRANIUM_GEORE_DOWSING_ROD);
+			generateRod(CompatRegistry.UNOBTAINIUM_GEORE_DOWSING_ROD);
 		}
 
 		protected void generateCharm(DeferredItem<GeOreGolemCharm> deferredItem) {
@@ -274,6 +286,9 @@ public class GNDatagen {
 			generateRodRecipe(CompatRegistry.TIN_GEORE_DOWSING_ROD, createTag("ingots/tin"), output);
 			generateRodRecipe(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD, createTag("ingots/tungsten"), output);
 			generateRodRecipe(CompatRegistry.URANIUM_GEORE_DOWSING_ROD, createTag("ingots/uranium"), output);
+			generateRodRecipe(CompatRegistry.ALLTHEMODIUM_GEORE_DOWSING_ROD, createTag("ingots/allthemodium"), output);
+			generateRodRecipe(CompatRegistry.VIBRANIUM_GEORE_DOWSING_ROD, createTag("ingots/vibranium"), output);
+			generateRodRecipe(CompatRegistry.UNOBTAINIUM_GEORE_DOWSING_ROD, createTag("ingots/unobtainium"), output);
 		}
 
 		private TagKey<Item> createTag(String tagName) {
@@ -303,29 +318,6 @@ public class GNDatagen {
 					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
 					.unlockedBy("has_ore", has(itemTag))
 					.save(tagOutput);
-		}
-
-		private Item getModItem(ResourceLocation itemLocation) {
-			for (Item item : BuiltInRegistries.ITEM.stream().toList()) {
-				if (BuiltInRegistries.ITEM.getKey(item).equals(itemLocation)) {
-					return item;
-				}
-			}
-			return null;
-		}
-
-		private void generateOptionalRodRecipe(DeferredHolder<Item, ? extends Item> rod, ItemLike itemLike,
-		                                       String modid, RecipeOutput recipeOutput) {
-			RecipeOutput conditionalConsumer = recipeOutput.withConditions(new ModLoadedCondition(modid));
-			ShapedRecipeBuilder.shaped(RecipeCategory.MISC, rod.get())
-					.pattern(" O ")
-					.pattern("ORO")
-					.pattern(" O ")
-					.define('R', ItemsRegistry.DOWSING_ROD)
-					.define('O', itemLike)
-					.unlockedBy("has_dowsing_rod", has(ItemsRegistry.DOWSING_ROD))
-					.unlockedBy("has_ore", has(itemLike))
-					.save(conditionalConsumer, ResourceLocation.fromNamespaceAndPath(GeOreNouveau.MOD_ID, rod.getId().getPath()));
 		}
 	}
 }

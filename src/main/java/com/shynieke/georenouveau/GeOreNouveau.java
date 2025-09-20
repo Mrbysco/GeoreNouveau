@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.shynieke.geore.registry.GeOreRegistry;
 import com.shynieke.georenouveau.client.ClientHandler;
 import com.shynieke.georenouveau.registry.CompatRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -30,6 +31,10 @@ public class GeOreNouveau {
 			eventBus.addListener(ClientHandler::clientSetup);
 			eventBus.addListener(ClientHandler::registerRenderers);
 		}
+	}
+
+	public static ResourceLocation modLoc(String path) {
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 
 	private void fillCreativeTab(BuildCreativeModeTabContentsEvent event) {

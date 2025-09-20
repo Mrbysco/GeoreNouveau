@@ -53,6 +53,9 @@ public class CompatRegistry {
 	public static final DeferredItem<GeOreGolemCharm> TIN_GEORE_GOLEM_CHARM = ITEMS.registerItem("tin_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.TIN));
 	public static final DeferredItem<GeOreGolemCharm> TUNGSTEN_GEORE_GOLEM_CHARM = ITEMS.registerItem("tungsten_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.TUNGSTEN));
 	public static final DeferredItem<GeOreGolemCharm> URANIUM_GEORE_GOLEM_CHARM = ITEMS.registerItem("uranium_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.URANIUM));
+	public static final DeferredItem<GeOreGolemCharm> ALLTHEMODIUM_GEORE_GOLEM_CHARM = ITEMS.registerItem("allthemodium_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.ALLTHEMODIUM));
+	public static final DeferredItem<GeOreGolemCharm> VIBRANIUM_GEORE_GOLEM_CHARM = ITEMS.registerItem("vibranium_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.VIBRANIUM));
+	public static final DeferredItem<GeOreGolemCharm> UNOBTAINIUM_GEORE_GOLEM_CHARM = ITEMS.registerItem("unobtainium_geore_golem_charm", (properties) -> new GeOreGolemCharm(properties, LinkedGeOre.UNOBTAINIUM));
 
 	public static final DeferredItem<GeOreDowsingRod> COAL_GEORE_DOWSING_ROD = ITEMS.registerItem("coal_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.COAL));
 	public static final DeferredItem<GeOreDowsingRod> COPPER_GEORE_DOWSING_ROD = ITEMS.registerItem("copper_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.COPPER));
@@ -80,6 +83,9 @@ public class CompatRegistry {
 	public static final DeferredItem<GeOreDowsingRod> TIN_GEORE_DOWSING_ROD = ITEMS.registerItem("tin_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.TIN));
 	public static final DeferredItem<GeOreDowsingRod> TUNGSTEN_GEORE_DOWSING_ROD = ITEMS.registerItem("tungsten_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.TUNGSTEN));
 	public static final DeferredItem<GeOreDowsingRod> URANIUM_GEORE_DOWSING_ROD = ITEMS.registerItem("uranium_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.URANIUM));
+	public static final DeferredItem<GeOreDowsingRod> ALLTHEMODIUM_GEORE_DOWSING_ROD = ITEMS.registerItem("allthemodium_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.ALLTHEMODIUM));
+	public static final DeferredItem<GeOreDowsingRod> VIBRANIUM_GEORE_DOWSING_ROD = ITEMS.registerItem("vibranium_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.VIBRANIUM));
+	public static final DeferredItem<GeOreDowsingRod> UNOBTAINIUM_GEORE_DOWSING_ROD = ITEMS.registerItem("unobtainium_geore_dowsing_rod", (properties) -> new GeOreDowsingRod(properties, LinkedGeOre.UNOBTAINIUM));
 
 	public static final Supplier<EntityDataSerializer<LinkedGeOre>> LINKED_SERIALIZER = ENTITY_DATA_SERIALIZER.register("linked_geore", () ->
 			EntityDataSerializer.forValueType(LinkedGeOre.STREAM_CODEC));

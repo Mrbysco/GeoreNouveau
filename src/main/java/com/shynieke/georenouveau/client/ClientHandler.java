@@ -34,6 +34,21 @@ public class ClientHandler {
 			rods.add(CompatRegistry.SAPPHIRE_GEORE_DOWSING_ROD.get());
 			rods.add(CompatRegistry.TOPAZ_GEORE_DOWSING_ROD.get());
 			rods.add(CompatRegistry.ZINC_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.URANINITE_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.BLACK_QUARTZ_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.MONAZITE_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.ALUMINUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.LEAD_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.NICKEL_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.OSMIUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.PLATINUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.SILVER_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.TIN_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.TUNGSTEN_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.URANIUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.ALLTHEMODIUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.VIBRANIUM_GEORE_DOWSING_ROD.get());
+			rods.add(CompatRegistry.UNOBTAINIUM_GEORE_DOWSING_ROD.get());
 
 			for (Item rod : rods) {
 				ItemProperties.register(rod, ResourceLocation.fromNamespaceAndPath(ArsNouveau.MODID, "uses"), new ClampedItemPropertyFunction() {
