@@ -159,6 +159,8 @@ dependencies {
 
     implementation "com.github.glitchfiend:TerraBlender-neoforge:${mc_version}-4.1.0.8"
 //    implementation "curse.maven:gems-and-crystals-334162:4766843" //Gems and Crystals (For optional dowsing rod recipes)
+
+    implementation "curse.maven:allthemodium-364466:6638078"
 }
 
 jar {
@@ -212,7 +214,7 @@ if (System.getenv().CURSEFORGE_KEY) {
         mainFile.changelogType = 'markdown'
 
         mainFile.addRequirement("geore", "ars-nouveau")
-//        mainFile.addOptional()
+        mainFile.addOptional("jei")
     }
 }
 
@@ -231,6 +233,7 @@ if (System.getenv().MODRINTH_KEY) {
         dependencies {
             required.project "geore"
             required.project "ars-nouveau"
+            optional.project "jei"
         }
     }
 }
