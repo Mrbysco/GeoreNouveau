@@ -1,3 +1,1 @@
-* Add JEI support to see GeOre Golem conversion blocks
-* Update GeOre support (Now requires 6.2.0+)
-* Add `pt_br` translations courtesy of PrincessStellar
+* Add a tooltip to the JEI conversion recipe arrow to specify the GeOre golem of the same ore is required to create the Budding GeOre block
