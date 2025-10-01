@@ -13,6 +13,8 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
@@ -61,7 +63,18 @@ public class ConversionCategory implements IRecipeCategory<ConversionWrapper> {
 	}
 
 	@Override
-	public void draw(ConversionWrapper recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+	public void draw(ConversionWrapper wrapper, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
 		arrow.draw(guiGraphics, 48, 5);
+		// Check if arrow is hovered (mouseX mouseY) and display tooltip
+		if (mouseX >= 48 && mouseX <= 48 + arrow.getWidth() && mouseY >= 5 && mouseY <= 5 + arrow.getHeight()) {
+			String formattedName = wrapper.linked().name;
+			// Replace underscores with spaces
+			formattedName = formattedName.replace("_", " ");
+			// Capitalize first letter of each word
+			formattedName = Character.toUpperCase(formattedName.charAt(0)) + formattedName.substring(1);
+			guiGraphics.renderTooltip(Minecraft.getInstance().font,
+					Component.translatable("georenouveau.gui.jei.category.conversion.required", formattedName).withStyle(ChatFormatting.YELLOW),
+					(int) mouseX, (int) mouseY);
+		}
 	}
 }
