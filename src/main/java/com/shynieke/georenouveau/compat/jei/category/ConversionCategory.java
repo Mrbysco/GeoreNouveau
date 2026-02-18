@@ -58,6 +58,7 @@ public class ConversionCategory implements IRecipeCategory<ConversionWrapper> {
 
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, ConversionWrapper wrapper, IFocusGroup focuses) {
+		builder.addSlot(RecipeIngredientRole.CATALYST, 32, 4).addItemLike(wrapper.linked().getCharm());
 		builder.addSlot(RecipeIngredientRole.OUTPUT, 120 - 16 - 6, 4).addItemLike(wrapper.linked().getBudding());
 		builder.addSlot(RecipeIngredientRole.INPUT, 6, 4).addItemLike(wrapper.linked().getBlock());
 	}

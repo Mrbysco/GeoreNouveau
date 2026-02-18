@@ -15,7 +15,6 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -37,7 +36,37 @@ public class JEIPlugin implements IModPlugin {
 
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-		registration.addRecipeCatalyst(new ItemStack(CompatRegistry.COAL_GEORE_GOLEM_CHARM.get()), CONVERSION_TYPE);
+		registration.addRecipeCatalysts(CONVERSION_TYPE,
+				CompatRegistry.COAL_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.COPPER_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.DIAMOND_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.EMERALD_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.GOLD_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.IRON_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.LAPIS_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.QUARTZ_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.REDSTONE_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.ANCIENT_DEBRIS_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.RUBY_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.SAPPHIRE_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.TOPAZ_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.ZINC_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.URANINITE_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.BLACK_QUARTZ_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.MONAZITE_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.ALUMINUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.LEAD_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.NICKEL_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.OSMIUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.PLATINUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.SILVER_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.TIN_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.TUNGSTEN_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.URANIUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.ALLTHEMODIUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.VIBRANIUM_GEORE_GOLEM_CHARM.asItem(),
+				CompatRegistry.UNOBTAINIUM_GEORE_GOLEM_CHARM.asItem()
+		);
 	}
 
 	@Override
