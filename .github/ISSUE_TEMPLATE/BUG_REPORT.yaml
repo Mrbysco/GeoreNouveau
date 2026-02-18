@@ -23,15 +23,17 @@ body:
   - type: input
     id: forge-info
     attributes:
-      label: Forge version
-      placeholder: ex. 36.2.0
+      label: Forge/Neoforge version
+      placeholder: ex. 21.1.1
+      description: Please be as specific as possible, latest is not a valid version
     validations:
       required: true
   - type: input
     id: minecraft-info
     attributes:
       label: Minecraft version
-      placeholder: ex. 1.16.5
+      placeholder: ex. 1.21.1
+      description: Please be as specific as possible, latest is not a valid version
     validations:
       required: true
   - type: input
@@ -39,13 +41,15 @@ body:
     attributes:
       label: Mod version
       placeholder: ex. 0.0.1
+      description: Please be as specific as possible, latest is not a valid version
     validations:
       required: true
   - type: input
     id: java-info
     attributes:
       label: Java version
-      placeholder: ex. Java 8 update 51
+      placeholder: ex. Java 21.0.3
+      description: Please be as specific as possible, latest is not a valid version
     validations:
       required: true
   - type: textarea
