@@ -1,1 +1,1 @@
-* Add a tooltip to the JEI conversion recipe arrow to specify the GeOre golem of the same ore is required to create the Budding GeOre block
+* Display the golem charm to indicate which type of golem can convert which block to Budding GeOre
