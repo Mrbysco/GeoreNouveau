@@ -1,0 +1,37 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:dusts/monazite"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "O": {
+            "tag": "forge:dusts/monazite"
+          },
+          "R": {
+            "item": "ars_nouveau:dowsing_rod"
+          }
+        },
+        "pattern": [
+          " O ",
+          "ORO",
+          " O "
+        ],
+        "result": {
+          "item": "georenouveau:monazite_geore_dowsing_rod"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

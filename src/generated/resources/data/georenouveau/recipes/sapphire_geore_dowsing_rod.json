@@ -4,8 +4,11 @@
     {
       "conditions": [
         {
-          "type": "forge:mod_loaded",
-          "modid": "gemsandcrystals"
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:gems/sapphire"
+          }
         }
       ],
       "recipe": {
@@ -13,7 +16,7 @@
         "category": "misc",
         "key": {
           "O": {
-            "item": "gemsandcrystals:sapphire"
+            "tag": "forge:gems/sapphire"
           },
           "R": {
             "item": "ars_nouveau:dowsing_rod"
