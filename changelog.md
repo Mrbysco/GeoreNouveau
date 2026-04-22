@@ -1,1 +1,1 @@
-* Display the golem charm to indicate which type of golem can convert which block to Budding GeOre
+* Add ja_jp translation (Courtesy of [Abbage230](https://github.com/Mrbysco/GeoreNouveau/pull/7))
